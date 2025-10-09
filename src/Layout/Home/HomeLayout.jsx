@@ -3,7 +3,7 @@ import React from 'react';
 const HomeLayout = () => {
     return (
         <div className='w-11/12 mx-auto'>
-                <title>Home | EstateLink</title>
+                <title>Home | University</title>
                 <div className="card bg-base-100 w-96 shadow-sm">
   <figure>
     <img

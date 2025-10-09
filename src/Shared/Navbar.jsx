@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Tooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Providers/AuthProvider";
 import userIcon from "../assets/user.png";
 import { toast } from "react-toastify";
-import { jwtDecode } from "jwt-decode";
 import { GiModernCity } from "react-icons/gi";
 
 
@@ -128,7 +127,7 @@ const Navbar = () => {
                         >
 
                             {/*==========================================================  */}
-                            <button onClick={toggleTheme} data-tooltip-content={"Change Theme"} data-tooltip-id="my-tooltip" data-tooltip-place="top">
+                            <button data-tooltip-content={"Change Theme"} data-tooltip-id="my-tooltip" data-tooltip-place="top">
                                 {theme === 'dark' ?
                                     (<div>
                                         {/* sun icon */}
@@ -194,7 +193,7 @@ const Navbar = () => {
                     </div>
                     <Link to="/" className="flex items-center justify-center gap-2">
                         <GiModernCity className="text-xl text-pink-600 md:text-2xl"></GiModernCity>
-                        <span className="text-xl font-semibold text-pink-600 md:text-2xl">EstateLink</span>
+                        <span className="text-xl font-semibold text-pink-600 md:text-2xl">University</span>
                     </Link>
                 </div>
 
@@ -204,7 +203,7 @@ const Navbar = () => {
                         {links}
 
                         {/*==========================================================  */}
-                        <button onClick={toggleTheme} data-tooltip-content={"Change Theme"} data-tooltip-id="my-tooltip" data-tooltip-place="top">
+                        <button data-tooltip-content={"Change Theme"} data-tooltip-id="my-tooltip" data-tooltip-place="top">
 
                             {theme === 'dark' ?
                                 (<div>

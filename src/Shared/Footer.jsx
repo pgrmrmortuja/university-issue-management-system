@@ -12,7 +12,7 @@ const Footer = () => {
                     <div>
                         <Link to="/" className="flex  items-center gap-2">
                             <GiModernCity className="text-xl md:text-2xl text-pink-600"></GiModernCity>
-                            <span className="text-xl md:text-2xl text-pink-600 font-semibold">EstateLink</span>
+                            <span className="text-xl md:text-2xl text-pink-600 font-semibold">University</span>
                         </Link>
                         <p className="text-sm">
                             Your trusted platform for buying, selling, and managing real estate properties effortlessly and securely.
@@ -88,16 +88,16 @@ const Footer = () => {
                     <div>
                         <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
                         <ul className="space-y-2 text-sm">
-                            <li>Email: support@estateLink.com</li>
+                            <li>Email: support@university.com</li>
                             <li>Phone: +1 (800) 123-4567</li>
-                            <li>Address: 123 EstateLink Ave, Cityscape, USA</li>
+                            <li>Address: 123 University Ave, Cityscape, USA</li>
                         </ul>
                     </div>
                 </div>
 
                 {/* Bottom Footer */}
                 <div className="mt-10 border-t border-gray-700 pt-5 text-center text-sm">
-                    <p>&copy; {new Date().getFullYear()} EstateLink. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} University. All rights reserved.</p>
                 </div>
             </div>
         </footer>
