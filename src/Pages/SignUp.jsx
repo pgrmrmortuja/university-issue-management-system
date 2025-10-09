@@ -130,6 +130,38 @@ const SignUp = () => {
             )}
           </div>
 
+          {/* University ID */}
+          <div>
+            <label className="block mb-1 font-medium text-black">
+              University ID
+            </label>
+            <input
+              {...register("universityID", { required: true })}
+              type="universityID"
+              placeholder="Enter Your University ID"
+              className="w-full input input-bordered bg-white"
+            />
+            {errors.universityID && (
+              <p className="mt-1 text-sm text-red-600">University ID is required</p>
+            )}
+          </div>
+
+          {/* Department */}
+          <div>
+            <label className="block mb-1 font-medium text-black">
+              Department
+            </label>
+            <input
+              {...register("department", { required: true })}
+              type="department"
+              placeholder="Enter your department"
+              className="w-full input input-bordered bg-white"
+            />
+            {errors.department && (
+              <p className="mt-1 text-sm text-red-600">Department is required</p>
+            )}
+          </div>
+
           {/* Email */}
           <div>
             <label className="block mb-1 font-medium text-black">
@@ -210,7 +242,7 @@ const SignUp = () => {
         {/* Google Sign In */}
         <div className="flex flex-col items-center">
           <p className="mb-2 font-medium text-black">
-            Continue with Google
+            Continue With
           </p>
           <button
             onClick={handleGoogleSignIn}
