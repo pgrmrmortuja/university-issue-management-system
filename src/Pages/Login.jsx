@@ -148,7 +148,7 @@ const Login = () => {
         {/* Google Login */}
         <div className="flex flex-col items-center">
           <p className="mb-2 font-medium text-gray-800">
-            Continue with Google
+            Continue With
           </p>
           <button
             onClick={handleGoogleSignIn}
