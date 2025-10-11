@@ -13,17 +13,16 @@ const MainLayout = () => {
 
 
     return (
-        <div>
+        <div className='flex flex-col min-h-screen'>
             {noHeaderFooter || <Navbar></Navbar>}
 
-            {
-                navigation.state === 'loading' ?
-                    <Loading></Loading>
-                    :
-                    <main className='w-11/12 mx-auto'>
-                        <Outlet></Outlet>
-                    </main>
-            }
+             <main className=" w-11/12 mx-auto">
+                {
+                    navigation.state === 'loading'
+                        ? <Loading />
+                        : <Outlet />
+                }
+            </main>
 
             {noHeaderFooter || <Footer></Footer>}
 

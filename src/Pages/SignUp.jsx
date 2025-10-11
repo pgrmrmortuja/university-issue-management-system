@@ -137,7 +137,7 @@ const SignUp = () => {
             </label>
             <input
               {...register("universityID", { required: true })}
-              type="universityID"
+              type="text"
               placeholder="Enter Your University ID"
               className="w-full input input-bordered bg-white"
             />
@@ -153,7 +153,7 @@ const SignUp = () => {
             </label>
             <input
               {...register("department", { required: true })}
-              type="department"
+              type="text"
               placeholder="Enter your department"
               className="w-full input input-bordered bg-white"
             />
