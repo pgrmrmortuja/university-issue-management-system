@@ -78,7 +78,7 @@ const AuthProvider = ({ children }) => {
             console.log("Current user:", currentUser);
 
             if (currentUser) {
-                axios.post("https://estatelink-server.vercel.app/login", { email: currentUser.email })
+                axios.post("http://localhost:5000/login", { email: currentUser.email })
                     .then(response => {
                         localStorage.setItem("jwt", response.data.token);
                     })
