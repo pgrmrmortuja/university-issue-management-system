@@ -20,7 +20,7 @@ const useTrackVisit = () => {
                 return;
             }
 
-            axios.post("http://localhost:5000/track-visit", { email, name })
+            axios.post("https://estatelink-server.vercel.app/track-visit", { email, name })
                 .then(res => {
                     console.log(res.data.message);
                     localStorage.setItem("lastVisit", today);
@@ -36,7 +36,7 @@ const useTrackVisit = () => {
                 return;
             }
 
-            axios.post("http://localhost:5000/track-visit", { email: "", name: "Anonymous" })
+            axios.post("https://estatelink-server.vercel.app/track-visit", { email: "", name: "Anonymous" })
                 .then(res => {
                     console.log(res.data.message);
                     localStorage.setItem("lastVisit", today);
