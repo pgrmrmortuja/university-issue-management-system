@@ -15,7 +15,7 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [disabled, setDisabled] = useState(true);
-    const { signIn, googleSignIn, setUser, user } = useAuth();
+    const { signIn, setUser} = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation;
@@ -45,30 +45,6 @@ const Login = () => {
             })
     }
 
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                console.log(result.user);
-                const userInfo = {
-                    name: result.user?.displayName,
-                    email: result.user?.email,
-                    role: "User",
-                    uid: result.user?.uid,
-                }
-                axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        Swal.fire({
-                            position: 'top',
-                            icon: 'success',
-                            title: 'Login Successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
-                    })
-            })
-    }
 
     const handleValidateCaptcha = (e) => {
         const user_captcha_value = e.target.value;
@@ -145,18 +121,6 @@ const Login = () => {
           <hr className="flex-1 border-gray-300" />
         </div>
 
-        {/* Google Login */}
-        <div className="flex flex-col items-center">
-          <p className="mb-2 font-medium text-gray-800">
-            Continue With
-          </p>
-          <button
-            onClick={handleGoogleSignIn}
-            className="p-3 text-4xl transition-transform duration-300 rounded-full hover:scale-110 hover:bg-pink-100"
-          >
-            <FcGoogle />
-          </button>
-        </div>
 
         {/* Register Link */}
         <p className="mt-6 text-center text-gray-700">

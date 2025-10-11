@@ -12,79 +12,48 @@ const SignUp = () => {
     const [showPassword, setShowPassword] = useState(false);
     const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile, googleSignIn, user } = useContext(AuthContext);
+    const { createUser, updateUserProfile} = useContext(AuthContext);
     const navigate = useNavigate();
 
 
-    // const uid = user?.uid;
-    // console.log("user er uid signup er time e", uid);
-
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                console.log(result.user);
-                const userInfo = {
-                    name: result.user?.displayName,
-                    email: result.user?.email,
-                    role: "User",
-                    uid: result.user?.uid,
-                }
-                axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        console.log(res.data);
-                        Swal.fire({
-                            position: 'top',
-                            icon: 'success',
-                            title: 'User created successfully.',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        navigate('/');
-                    })
-            })
-    }
-
     const onSubmit = data => {
-        console.log(data);
-        createUser(data.email, data.password)
-            .then(result => {
-                const loggedUser = result.user;
-                const uid = result.user?.uid;
-                console.log("jokhon user create holo", loggedUser);
-                console.log("user create uid", uid);
-                updateUserProfile(data.name, data.photoURL)
-                    .then(() => {
-                        console.log("jokhon create hoye update holo", data);
-                        //create user entry in the database
-                        const userInfo = {
-                            name: data.name,
-                            email: data.email,
-                            role: "User",
-                            uid: uid,
-                        }
+  console.log(data);
+  createUser(data.email, data.password)
+    .then(result => {
+      const loggedUser = result.user;
+      const uid = result.user?.uid;
 
-                        axiosPublic.post('/users', userInfo)
-                            .then(res => {
-                                if (res.data.insertedId) {
-                                    console.log('user added to the database.');
-                                    reset();
-                                    Swal.fire({
-                                        position: 'top',
-                                        icon: 'success',
-                                        title: 'User created successfully.',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    navigate('/');
-                                }
-                            })
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          // 🔥 Send all form data to database
+          const userInfo = {
+            name: data.name,
+            photoURL: data.photoURL,
+            universityID: data.universityID,
+            department: data.department,
+            email: data.email,
+            role: "User",
+            uid: uid,
+          };
 
-                        console.log('user profile info updated')
-
-                    })
-                    .catch(error => console.log(error))
+          axiosPublic.post('/users', userInfo)
+            .then(res => {
+              if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: 'top',
+                  icon: 'success',
+                  title: 'User created successfully.',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                navigate('/');
+              }
             })
-    };
+        })
+        .catch(error => console.log(error))
+    })
+};
 
 
 
@@ -237,19 +206,6 @@ const SignUp = () => {
           <hr className="flex-1 border-black-300" />
           <span className="mx-3 text-sm text-black">OR</span>
           <hr className="flex-1 border-black-300" />
-        </div>
-
-        {/* Google Sign In */}
-        <div className="flex flex-col items-center">
-          <p className="mb-2 font-medium text-black">
-            Continue With
-          </p>
-          <button
-            onClick={handleGoogleSignIn}
-            className="p-3 text-4xl transition-transform duration-300 rounded-full hover:scale-110 hover:bg-pink-100"
-          >
-            <FcGoogle />
-          </button>
         </div>
 
         {/* Login Link */}
