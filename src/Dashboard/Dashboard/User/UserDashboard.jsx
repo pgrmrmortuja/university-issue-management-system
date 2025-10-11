@@ -1,4 +1,3 @@
-import React from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { NavLink, Outlet } from 'react-router';
 

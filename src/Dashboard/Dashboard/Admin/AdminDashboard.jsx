@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { Link, Outlet } from 'react-router';
-import Logout from '../components/Logout';
-import { AuthContext } from '../providers/AuthProvider';
+import { NavLink, Outlet } from 'react-router';
 
 const AdminDashboard = () => {
-    const { user } = useContext(AuthContext);
+
+    const linkClass = ({ isActive }) =>
+        isActive
+            ? " p-2 text-pink-700 rounded-lg hover:bg-transparent font-bold text-lg"
+            : " p-2 rounded-lg hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-blue-500";
 
     return (
          <div>
@@ -45,12 +46,19 @@ const AdminDashboard = () => {
                             </label>
                         </li>
 
-                        {/* Sidebar Links */}
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/users">All Users</Link></li>
-                        <li><Link to="/register">Register</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                        <li><Logout></Logout></li>
+                    {/* Sidebar Links */}
+                       
+                    <li>
+                        <NavLink to="admin-profile" className={linkClass} >
+                            My Profile
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="manage-users" className={linkClass} >
+                            Manage Users
+                        </NavLink>
+                    </li>
+                    <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
 
                     </ul>
                 </div>

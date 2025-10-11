@@ -9,7 +9,7 @@ import Login from '../Pages/Login';
 import SignUp from '../Pages/SignUp';
 import DashboardLayout from "../Dashboard/Dashboard/DashboardLayout";
 import UserProfile from "../Dashboard/Dashboard/User/UserProfile";
-
+import AdminProfile from "../Dashboard/Dashboard/Admin/AdminProfile";
 
 
 export const router = createBrowserRouter([
@@ -35,6 +35,12 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         Component: DashboardLayout,
         children: [
+            //Admin
+            {
+                path: 'admin-profile',
+                Component: AdminProfile,
+            },
+
             //User
             {
                 path: 'user-profile',
