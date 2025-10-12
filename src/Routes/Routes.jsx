@@ -10,6 +10,7 @@ import SignUp from '../Pages/SignUp';
 import DashboardLayout from "../Dashboard/Dashboard/DashboardLayout";
 import UserProfile from "../Dashboard/Dashboard/User/UserProfile";
 import AdminProfile from "../Dashboard/Dashboard/Admin/AdminProfile";
+import SubmitIssue from "../Dashboard/Dashboard/User/SubmitIssue";
 
 
 export const router = createBrowserRouter([
@@ -40,11 +41,14 @@ export const router = createBrowserRouter([
                 path: 'admin-profile',
                 Component: AdminProfile,
             },
-
             //User
             {
                 path: 'user-profile',
                 Component: UserProfile,
+            },
+            {
+                path: 'submit-issue',
+                Component: SubmitIssue,
             },
         ]
     },

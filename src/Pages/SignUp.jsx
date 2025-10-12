@@ -20,7 +20,6 @@ const SignUp = () => {
   console.log(data);
   createUser(data.email, data.password)
     .then(result => {
-      const loggedUser = result.user;
       const uid = result.user?.uid;
 
       updateUserProfile(data.name, data.photoURL)
