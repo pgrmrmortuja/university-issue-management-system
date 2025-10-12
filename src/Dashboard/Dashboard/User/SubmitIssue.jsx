@@ -24,6 +24,7 @@ const SubmitIssue = () => {
    const student_email = form.student_email.value;
    const student_image = form.student_image.value;
    const issue_title = form.issue_title.value;
+   const issue_category = form.issue_category.value;
    const issue_location = form.issue_location.value;
    const issue_date = form.issue_date.value;
    const issue_time = form.issue_time.value;
@@ -36,6 +37,7 @@ const SubmitIssue = () => {
      student_email,
      student_image,
      issue_title,
+     issue_category,
      issue_location,
      issue_details,
      issue_date,
@@ -62,6 +64,7 @@ const SubmitIssue = () => {
          student_email,
          student_image,
          issue_title,
+         issue_category,
          issue_location,
          issue_date,
          issue_time,
@@ -150,7 +153,31 @@ const SubmitIssue = () => {
     </div>
 
     {/* Issue Inputs */}
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+    <div>
+   <label className="block mb-2 text-sm font-semibold text-gray-700">
+    Category
+   </label>
+   <select
+    name="issue_category"
+    required
+    className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+    defaultValue="" // optional: empty by default
+   >
+    <option value="" disabled>
+      Select a category
+    </option>
+    <option value="Academic">Academic</option>
+    <option value="Classroom">Classroom</option>
+    <option value="Finance">Finance</option>
+    <option value="Hall">Hall</option>
+    <option value="IT">IT</option>
+    <option value="Library">Library</option>
+    <option value="Canteen">Canteen</option>
+    <option value="Transport">Transport</option>
+   </select>
+</div>
+      
       <div>
         <label className="block mb-2 text-sm font-semibold text-gray-700">
           Issue Title
