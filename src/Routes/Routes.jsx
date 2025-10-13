@@ -11,6 +11,8 @@ import DashboardLayout from "../Dashboard/Dashboard/DashboardLayout";
 import UserProfile from "../Dashboard/Dashboard/User/UserProfile";
 import AdminProfile from "../Dashboard/Dashboard/Admin/AdminProfile";
 import SubmitIssue from "../Dashboard/Dashboard/User/SubmitIssue";
+import MyIssues from "../Dashboard/Dashboard/User/MyIssues";
+import UpdateIssue from "../Dashboard/Dashboard/User/UpdateIssue";
 
 
 export const router = createBrowserRouter([
@@ -49,6 +51,14 @@ export const router = createBrowserRouter([
             {
                 path: 'submit-issue',
                 Component: SubmitIssue,
+            },
+            {
+                path: 'my-issues',
+                Component: MyIssues,
+            },
+            {
+                path: 'update-issue/:id',
+                Component: UpdateIssue,
             },
         ]
     },

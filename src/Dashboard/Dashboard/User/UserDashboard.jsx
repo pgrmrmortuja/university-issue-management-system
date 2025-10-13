@@ -55,7 +55,12 @@ const UserDashboard = () => {
                     </li>
                     <li>
                         <NavLink to="submit-issue" className={linkClass} >
-                            Submit An Issue
+                            Submit Issue
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="my-issues" className={linkClass} >
+                            My Submitted Issue
                         </NavLink>
                     </li>
                     <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
