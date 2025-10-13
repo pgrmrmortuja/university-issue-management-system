@@ -13,6 +13,8 @@ import AdminProfile from "../Dashboard/Dashboard/Admin/AdminProfile";
 import SubmitIssue from "../Dashboard/Dashboard/User/SubmitIssue";
 import MyIssues from "../Dashboard/Dashboard/User/MyIssues";
 import UpdateIssue from "../Dashboard/Dashboard/User/UpdateIssue";
+import ManageIssues from "../Dashboard/Dashboard/Admin/ManageIssues";
+import IssueDetails from "../Dashboard/Dashboard/Admin/IssueDetails";
 
 
 export const router = createBrowserRouter([
@@ -20,9 +22,9 @@ export const router = createBrowserRouter([
         path: "/",
         Component: MainLayout,
         children: [
-            { 
-                index: true, 
-                Component: HomeLayout 
+            {
+                index: true,
+                Component: HomeLayout
             },
             {
                 path: '/login',
@@ -42,6 +44,14 @@ export const router = createBrowserRouter([
             {
                 path: 'admin-profile',
                 Component: AdminProfile,
+            },
+            {
+                path: 'manage-issues',
+                Component: ManageIssues,
+            },
+            {
+                path: 'details-issue/:id',
+                Component: IssueDetails,
             },
             //User
             {

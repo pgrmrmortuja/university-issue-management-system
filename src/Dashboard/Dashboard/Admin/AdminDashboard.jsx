@@ -9,7 +9,7 @@ const AdminDashboard = () => {
             : " p-2 rounded-lg hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-blue-500";
 
     return (
-         <div>
+        <div>
             <div className="drawer">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle peer" />
 
@@ -46,19 +46,23 @@ const AdminDashboard = () => {
                             </label>
                         </li>
 
-                    {/* Sidebar Links */}
-                       
-                    <li>
-                        <NavLink to="admin-profile" className={linkClass} >
-                            My Profile
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="manage-users" className={linkClass} >
-                            Manage Users
-                        </NavLink>
-                    </li>
-                    <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
+                        {/* Sidebar Links */}
+
+                        <li>
+                            <NavLink to="admin-profile" className={linkClass} >
+                                My Profile
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="manage-issues" className={linkClass} >
+                                Manage Issues
+                            </NavLink>
+                        </li><li>
+                            <NavLink to="manage-users" className={linkClass} >
+                                Manage Users
+                            </NavLink>
+                        </li>
+                        <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
 
                     </ul>
                 </div>
