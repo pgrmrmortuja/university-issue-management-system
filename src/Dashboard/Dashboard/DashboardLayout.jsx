@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { jwtDecode } from "jwt-decode";
 import UserDashboard from './User/UserDashboard';
 import AdminDashboard from './Admin/AdminDashboard';
 
 const DashboardLayout = () => {
-    const [isOpen, setIsOpen] = useState(false);
 
     const token = localStorage.getItem("jwt");
     let role = null;
@@ -13,6 +12,8 @@ const DashboardLayout = () => {
         const decoded = jwtDecode(token);
         role = decoded.role;
     }
+
+    console.log("role from dashboard:",role);
 
     return (
         <div className="w-full mx-auto">

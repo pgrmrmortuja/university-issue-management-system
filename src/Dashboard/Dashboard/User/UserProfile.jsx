@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 const UserProfile = () => {
     const { user } = useAuth();
 
+
     const axiosSecure = useAxiosSecure();
 
     const { data: userInfo = [] } = useQuery({
@@ -15,14 +16,15 @@ const UserProfile = () => {
             return response.data;
         },
     });
+    console.log("user information from userprofile:", userInfo)
 
-    console.log(userInfo[0]?.role);
+    console.log("role of user:", userInfo[0]?.role);
 
     return (
         <div className="container mx-auto flex flex-col justify-center items-center min-h-screen">
-          
-                <title>User Profile | University</title>
-       
+
+            <title>User Profile | University</title>
+
             <h2 className="text-3xl font-semibold text-center mb-8">My Profile</h2>
             <div className="flex flex-col items-center">
                 <img
@@ -32,11 +34,14 @@ const UserProfile = () => {
                 />
                 <h3 className="text-2xl font-medium mt-4">{user?.displayName || "No Name"}</h3>
                 <p className="text-lg ">{user?.email}</p>
-                {userInfo[0]?.role && userInfo[0]?.role !== "User" && (
+                {/* {userInfo[0]?.role && userInfo[0]?.role !== "User" && (
                     <span className="px-5 py-2 mt-3 text-lg font-semibold bg-blue-600 rounded-full">
                         {userInfo[0]?.role}
                     </span>
-                )}
+                )} */}
+                <span className="px-5 py-2 mt-3 text-lg font-semibold bg-blue-600 rounded-full">
+                    Student
+                </span>
             </div>
             <div className="mt-8 border-t pt-6  text-lg">
                 <p><strong>Joining Date:</strong> {user?.metadata?.creationTime || "N/A"}</p>

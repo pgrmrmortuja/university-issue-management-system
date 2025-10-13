@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from "react-router";
 import Swal from 'sweetalert2'
 import { toast } from "react-toastify";
@@ -6,60 +6,64 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import useAuth from "../hooks/useAuth";
+import { AuthContext } from '../Providers/AuthProvider';
 
 
 const Login = () => {
 
-    const [error, setError] = useState({});
-    const axiosPublic = useAxiosPublic();
-    const [showPassword, setShowPassword] = useState(false);
-    const [email, setEmail] = useState("");
-    const [disabled, setDisabled] = useState(true);
-    const { signIn, setUser} = useAuth();
+  const [error, setError] = useState({});
+  const axiosPublic = useAxiosPublic();
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  // const { signIn, setUser} = useAuth();
+  const { signIn, setUser, getJwt } = useContext(AuthContext);
 
-    const navigate = useNavigate();
-    const location = useLocation;
-    const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const location = useLocation;
+  const from = location.state?.from?.pathname || "/";
 
 
-    // useEffect(() => {
-    //     loadCaptchaEnginge(6);
-    // }, [])
+  // useEffect(() => {
+  //     loadCaptchaEnginge(6);
+  // }, [])
 
-    const handleLogin = event => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-        signIn(email, password)
-            .then((result) => {
-                setUser(result.user);
-                navigate(from, { replace: true });
-                toast.success("Login successfully!");
-            })
-            .catch((err) => {
-                console.log("Error", err.message);
-                setError({ ...error, login: err.code });
-                toast.error("Login failed. Please try again");
-            })
+  const handleLogin = event => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signIn(email, password)
+      .then(async (result) => {
+        const loggedUser = result.user;           // ✅ result.user কে local var এ ধরলাম
+        await getJwt(loggedUser.email);           // ✅ সঠিক ইমেইল পাঠানো
+        setUser(loggedUser);
+        toast.success("Login successfully!");
+        navigate(from, { replace: true });
+      })
+      .catch((err) => {
+        console.log("Error", err.message);
+        setError({ ...error, login: err.code });
+        toast.error("Login failed. Please try again");
+      })
+  }
+
+
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
+    if (validateCaptcha(user_captcha_value)) {
+      setDisabled(false);
     }
-
-
-    const handleValidateCaptcha = (e) => {
-        const user_captcha_value = e.target.value;
-        if (validateCaptcha(user_captcha_value)) {
-            setDisabled(false);
-        }
-        else {
-            setDisabled(true)
-        }
+    else {
+      setDisabled(true)
     }
+  }
 
 
 
-    return (
-         <div className="flex items-center justify-center min-h-screen px-4 py-10 bg-gradient-to-br from-pink-200 via-pink-300 to-pink-400">
+  return (
+    <div className="flex items-center justify-center min-h-screen px-4 py-10 bg-gradient-to-br from-pink-200 via-pink-300 to-pink-400">
       <title>Login | University</title>
 
       {/* Login Card */}
@@ -134,7 +138,7 @@ const Login = () => {
         </p>
       </div>
     </div>
-    );
+  );
 };
 
 export default Login;

@@ -12,86 +12,91 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const SignUp = () => {
 
-    const [showPassword, setShowPassword] = useState(false);
-    const axiosPublic = useAxiosPublic();
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile} = useContext(AuthContext);
-    const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { createUser, updateUserProfile, getJwt } = useContext(AuthContext);
+  const navigate = useNavigate();
+
 
 
   const onSubmit = async (data) => {
-  try {
-    const imageFile = data.photoURL[0]; // get selected file
+    try {
+      const imageFile = data.photoURL[0]; // get selected file
 
-    if (!imageFile) {
-      Swal.fire({
-        icon: "warning",
-        title: "No Image Selected",
-        text: "Please select a profile image.",
+      if (!imageFile) {
+        Swal.fire({
+          icon: "warning",
+          title: "No Image Selected",
+          text: "Please select a profile image.",
+        });
+        return;
+      }
+
+      // Upload image to ImgBB
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+      const res = await axiosPublic.post(image_hosting_api, formData, {
+        headers: { "content-type": "multipart/form-data" },
       });
-      return;
+
+      if (res.data.success) {
+        const imageUrl = res.data.data.display_url;
+        data.photoURL = imageUrl; // replace file with hosted URL
+
+        // 🔥 Then proceed with Firebase user creation & DB insertion
+        createUser(data.email, data.password)
+          .then(result => {
+            const uid = result.user?.uid;
+
+            updateUserProfile(data.name, data.photoURL)
+              .then(() => {
+                const userInfo = {
+                  name: data.name,
+                  photoURL: data.photoURL,
+                  universityID: data.universityID,
+                  department: data.department,
+                  email: data.email,
+                  role: "User",
+                  uid: uid,
+                };
+
+                axiosPublic.post("/users", userInfo)
+                  .then(res => {
+                    if (res.data.insertedId) {
+
+                      getJwt(data.email); // stores token in localStorage
+
+                      reset();
+                      Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Registration Successful.',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      navigate('/');
+
+                    }
+                  })
+              })
+              .catch(error => console.log(error))
+          })
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Image upload failed!",
+      });
     }
-
-    // Upload image to ImgBB
-    const formData = new FormData();
-    formData.append("image", imageFile);
-
-    const res = await axiosPublic.post(image_hosting_api, formData, {
-      headers: { "content-type": "multipart/form-data" },
-    });
-
-    if (res.data.success) {
-      const imageUrl = res.data.data.display_url;
-      data.photoURL = imageUrl; // replace file with hosted URL
-
-      // 🔥 Then proceed with Firebase user creation & DB insertion
-      createUser(data.email, data.password)
-        .then(result => {
-          const uid = result.user?.uid;
-
-          updateUserProfile(data.name, data.photoURL)
-            .then(() => {
-              const userInfo = {
-                name: data.name,
-                photoURL: data.photoURL,
-                universityID: data.universityID,
-                department: data.department,
-                email: data.email,
-                role: "User",
-                uid: uid,
-              };
-
-              axiosPublic.post("/users", userInfo)
-                .then(res => {
-                  if (res.data.insertedId) {
-                    reset();
-                    Swal.fire({
-                      position: 'top',
-                      icon: 'success',
-                      title: 'User created successfully.',
-                      showConfirmButton: false,
-                      timer: 1500
-                    });
-                    navigate('/');
-                  }
-                })
-            })
-            .catch(error => console.log(error))
-        })
-    }
-  } catch (error) {
-    console.error(error);
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Image upload failed!",
-    });
-  }
-};
+  };
 
 
 
-    return  (
+  return (
     <div className="flex items-center justify-center min-h-screen px-4 py-10 bg-gradient-to-br from-pink-200 via-pink-300 to-pink-400">
       <title>Sign Up | University</title>
 
@@ -119,19 +124,19 @@ const SignUp = () => {
 
           {/* Profile Photo */}
           <div>
-          <label className="block mb-1 font-medium text-black">
-            Profile Photo
-          </label>
-          <input
-            {...register("photoURL", { required: true })}
-            type="file"
-            accept="image/*"
-            className="w-full text-black bg-white border-2 border-gray-300 rounded-lg file-input"
-          />
-          {errors.photoURL && (
-        <p className="mt-1 text-sm text-red-600">Profile photo is required</p>
-          )}
-          </div>    
+            <label className="block mb-1 font-medium text-black">
+              Profile Photo
+            </label>
+            <input
+              {...register("photoURL", { required: true })}
+              type="file"
+              accept="image/*"
+              className="w-full text-black bg-white border-2 border-gray-300 rounded-lg file-input"
+            />
+            {errors.photoURL && (
+              <p className="mt-1 text-sm text-red-600">Profile photo is required</p>
+            )}
+          </div>
 
           {/* University ID */}
           <div>
@@ -254,7 +259,7 @@ const SignUp = () => {
         </p>
       </div>
     </div>
-    );
+  );
 };
 
 export default SignUp;

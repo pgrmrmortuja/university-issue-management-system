@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, deleteUser, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from '../firebase/firebase.config';
 import { GoogleAuthProvider } from 'firebase/auth';
-import useAxiosPublic from '../hooks/useAxiosPublic';
 import axios from "axios";
 
 export const AuthContext = createContext(null);
@@ -13,7 +12,6 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
-    const axiosPublic = useAxiosPublic();
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -46,6 +44,7 @@ const AuthProvider = ({ children }) => {
         });
     }
 
+
     // useEffect(() => {
     //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
     //         setUser(currentUser);
@@ -72,39 +71,47 @@ const AuthProvider = ({ children }) => {
     //     return () => unsubscribe();
     // }, [axiosPublic]);
 
+
+
+    // Helper to request JWT from the server and store it
+    const getJwt = async (email) => {
+        try {
+            const res = await axios.post("http://localhost:5000/login", { email });
+            if (res?.data?.token) {
+                localStorage.setItem("jwt", res.data.token);
+            }
+            return res.data;
+        } catch (err) {
+            console.error("JWT creation failed:", err);
+            localStorage.removeItem("jwt");
+            throw err; // caller can catch if desired
+        }
+    };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             console.log("Current user:", currentUser);
-
-            if (currentUser) {
-                axios.post("http://localhost:5000/login", { email: currentUser.email })
-                    .then(response => {
-                        localStorage.setItem("jwt", response.data.token);
-                    })
-                    .catch(error => {
-                        console.error("JWT creation failed:", error);
-                    })
-                    .finally(() => setLoading(false));
-            } else {
-                localStorage.removeItem("jwt");
-                setLoading(false);
-            }
+            // IMPORTANT: do NOT call getJwt here unconditionally.
+            // We'll call getJwt from signup/login flows AFTER we ensure DB has the user.
+            setLoading(false);
         });
 
         return () => unsubscribe();
-    }, [axios]);
+    }, []);
 
     const authInfo = {
         user,
         setUser,
         loading,
+        setLoading,
         createUser,
         signIn,
         logOut,
         updateUserProfile,
         googleSignIn,
         userDelete,
+        getJwt
     }
 
     return (
