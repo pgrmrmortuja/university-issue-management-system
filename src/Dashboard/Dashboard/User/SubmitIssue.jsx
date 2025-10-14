@@ -70,6 +70,7 @@ const SubmitIssue = () => {
          issue_time,
          issue_details,
          verification_status,
+         isSolved: false,
          issue_image: imageUrl, // uploaded image URL
          submit_date: new Date().toLocaleString()
         };
