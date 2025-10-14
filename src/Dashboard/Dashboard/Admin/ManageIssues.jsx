@@ -84,7 +84,7 @@ const ManageIssues = () => {
                                     ) : (
                                         <span className={`font-bold ${issue.verification_status === 'verified' ? 'text-green-500' : 'text-red-500'}`}>{issue.verification_status}</span>
                                     )}
-                                    <Link to={`/dashboard/details-issue/${issue._id}`}>
+                                    <Link to={`/details-issue/${issue._id}`}>
                                         <button className='btn btn-link btn-sm ml-2'>Details</button>
                                     </Link>
                                     

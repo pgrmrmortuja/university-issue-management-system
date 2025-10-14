@@ -57,7 +57,13 @@ const AdminDashboard = () => {
                             <NavLink to="manage-issues" className={linkClass} >
                                 Manage Issues
                             </NavLink>
-                        </li><li>
+                        </li> 
+                        <li>
+                            <NavLink to="/saved-issues" className={linkClass} >
+                                Saved Issues
+                            </NavLink>
+                        </li>
+                        <li>
                             <NavLink to="manage-users" className={linkClass} >
                                 Manage Users
                             </NavLink>

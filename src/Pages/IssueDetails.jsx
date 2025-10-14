@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { FaThumbsUp, FaCommentAlt, FaRegBookmark, FaBookmark } from 'react-icons/fa';
-import { AuthContext } from '../../../Providers/AuthProvider';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { AuthContext } from '../Providers/AuthProvider';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const IssueDetails = () => {
     const { id } = useParams();
@@ -58,15 +58,34 @@ const IssueDetails = () => {
         }
     };
 
-    // সেভ হ্যান্ডলার
+    // page load এ check করবো
+    useEffect(() => {
+        const checkSaved = async () => {
+            if (!user?.email) return;
+            try {
+                const res = await axiosSecure.get(`/saved/check/${id}?email=${user.email}`);
+                setIsSaved(res.data.isSaved);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        checkSaved();
+    }, [id, user, axiosSecure]);
+
+    // Save / Unsave handler
     const handleSave = async () => {
         if (!user) return alert('Please login first');
-        setIsSaved(!isSaved);
 
         try {
-            await axiosSecure.post(`/saves/${id}`, {
-                email: user.email,
-            });
+            const res = await axiosSecure.post(`/saves/${id}`, { email: user.email });
+
+            // Toggle state based on backend response
+            if (res.data.message.includes('unsaved')) {
+                setIsSaved(false);
+            } else {
+                setIsSaved(true);
+            }
         } catch (err) {
             console.error(err);
         }
@@ -86,7 +105,7 @@ const IssueDetails = () => {
     } = issue;
 
     return (
-        <div className="flex justify-center w-full min-h-screen bg-gray-100">
+        <div className="flex justify-center w-full min-h-screen bg-white mb-16">
             <div className="w-full max-w-xl p-4 mt-10 bg-white rounded-2xl shadow-md">
                 {/* পোস্ট হেডার */}
                 <div className="flex items-center gap-3 mb-3">
@@ -165,9 +184,9 @@ const IssueDetails = () => {
                         Like
                     </button>
 
-                    <button className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl">
+                    {/* <button className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl">
                         <FaCommentAlt className="mr-2 text-lg" /> Comment
-                    </button>
+                    </button> */}
 
                     <button
                         onClick={handleSave}

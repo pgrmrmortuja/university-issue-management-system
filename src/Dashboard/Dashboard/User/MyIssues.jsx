@@ -50,9 +50,9 @@ const MyIssues = () => {
 
     return (
         <div className="container mx-auto px-4 py-10">
-        
+
             <title>My Submitted Issues | University</title>
-        
+
             <h1 className="text-3xl md:text-4xl font-bold mb-14 text-center">My Submitted Issues</h1>
 
             {issues.length === 0 ? (
