@@ -88,10 +88,10 @@ const MyIssues = () => {
                                     <Link to={`/dashboard/update-issue/${item._id}`}>
                                         <button className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">Update</button>
                                     </Link>
-                                    <button onClick={() => handleDelete(item._id)} className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
+                                    <button onClick={() => handleDelete(item._id)} className="px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-600 transition">Delete</button>
 
                                     <Link to={`/details-issue/${item._id}`}>
-                                        <button className='btn border-blue-600 border-2 ml-2'>See Details</button>
+                                        <button className='btn border-blue-600 rounded-lg border-2 ml-2'>See Details</button>
                                     </Link>
                                 </div>
                             </div>
