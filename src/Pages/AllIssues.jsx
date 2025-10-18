@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { FaSearch, FaFilter } from 'react-icons/fa';
+import BackButton from '../Shared/BackButton';
 
 const AllIssues = () => {
     const axiosSecure = useAxiosSecure();
@@ -34,6 +35,11 @@ const AllIssues = () => {
         <div className='container mx-auto px-4 py-6'>
 
             <title>All Issues | University</title>
+
+            <div className="mb-6">
+                <BackButton />
+            </div>
+
             <h1 className="text-4xl font-bold mb-10 text-center">All Issues</h1>
 
             {/* Search and Filters */}
