@@ -5,11 +5,19 @@ import { useQuery } from "@tanstack/react-query";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaEdit } from "react-icons/fa";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 
 const UserProfile = () => {
   const { user, updateUserProfile, setUser } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const [isEditing, setIsEditing] = useState(false); // modal control
+  const [previewImage, setPreviewImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     photoURL: "",
@@ -37,13 +45,29 @@ const UserProfile = () => {
     e.preventDefault();
 
     try {
-      // Update Firebase DisplayName & Photo
-      await updateUserProfile(formData.name, formData.photoURL);
+      let imageUrl = formData.photoURL; // আগের photo রাখো
 
-      // Update MongoDB info
+      // যদি নতুন ফাইল select করা হয়, তাহলে imgbb তে আপলোড করো
+      if (imageFile) {
+        const imageData = new FormData();
+        imageData.append("image", imageFile);
+
+        const res = await axiosPublic.post(image_hosting_api, imageData, {
+          headers: { "content-type": "multipart/form-data" },
+        });
+
+        if (res.data.success) {
+          imageUrl = res.data.data.display_url;
+        }
+      }
+
+      // Firebase update
+      await updateUserProfile(formData.name, imageUrl);
+
+      // MongoDB update
       await axiosSecure.patch(`/user-update/${user?.email}`, {
         name: formData.name,
-        photoURL: formData.photoURL,
+        photoURL: imageUrl,
         universityID: formData.universityID,
         department: formData.department,
       });
@@ -52,8 +76,9 @@ const UserProfile = () => {
       setUser({
         ...user,
         displayName: formData.name,
-        photoURL: formData.photoURL,
+        photoURL: imageUrl,
       });
+
       refetch();
 
       Swal.fire({
@@ -63,6 +88,8 @@ const UserProfile = () => {
       });
 
       setIsEditing(false);
+      setPreviewImage(null);
+      setImageFile(null);
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -72,6 +99,7 @@ const UserProfile = () => {
       });
     }
   };
+
 
   return (
     <div className="container mx-auto flex flex-col justify-center items-center min-h-screen px-4">
@@ -145,42 +173,81 @@ const UserProfile = () => {
               Edit Profile
             </h3>
 
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+            {/* 🔹 Name Field */}
+            <div>
+              <label className="block mb-2 font-semibold text-gray-700">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="input input-bordered w-full"
+              />
+            </div>
 
-            <input
-              type="text"
-              name="photoURL"
-              placeholder="Photo URL"
-              value={formData.photoURL}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+            {/* 🔹 Image Upload */}
+            <div>
+              <label className="block mb-2 font-semibold text-gray-700">
+                Upload New Image
+              </label>
 
-            <input
-              type="text"
-              name="universityID"
-              placeholder="University ID"
-              value={formData.universityID}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+              {(previewImage || formData.photoURL) && (
+                <img
+                  src={previewImage ? previewImage : formData.photoURL}
+                  alt="Preview"
+                  className="w-24 h-24 object-cover rounded-lg mb-3"
+                />
+              )}
 
-            <input
-              type="text"
-              name="department"
-              placeholder="Department"
-              value={formData.department}
-              onChange={handleChange}
-              className="input input-bordered w-full"
-            />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const imageURL = URL.createObjectURL(file);
+                    setPreviewImage(imageURL);
+                    setImageFile(file);
+                  }
+                }}
+                className="file-input file-input-bordered w-full"
+              />
+            </div>
 
+            {/* 🔹 University ID */}
+            <div>
+              <label className="block mb-2 font-semibold text-gray-700">
+                University ID
+              </label>
+              <input
+                type="text"
+                name="universityID"
+                placeholder="University ID"
+                value={formData.universityID}
+                onChange={handleChange}
+                className="input input-bordered w-full"
+              />
+            </div>
+
+            {/* 🔹 Department */}
+            <div>
+              <label className="block mb-2 font-semibold text-gray-700">
+                Department
+              </label>
+              <input
+                type="text"
+                name="department"
+                placeholder="Department"
+                value={formData.department}
+                onChange={handleChange}
+                className="input input-bordered w-full"
+              />
+            </div>
+
+            {/* 🔹 Buttons */}
             <div className="flex justify-end gap-3 mt-6">
               <button
                 type="button"
@@ -196,6 +263,7 @@ const UserProfile = () => {
           </form>
         </div>
       )}
+
     </div>
   );
 };
