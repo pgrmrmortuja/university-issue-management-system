@@ -44,12 +44,19 @@ const Navbar = () => {
             <NavLink to="/" className={linkClass} >
                 Home
             </NavLink>
-
             {
                 user &&
                 (
                     <NavLink to={getDashboardLink()} className={linkClass} >
                         Dashboard
+                    </NavLink>
+                )
+            }
+            {
+                user &&
+                (
+                    <NavLink to="/all-issues" className={linkClass} >
+                        All Issues
                     </NavLink>
                 )
             }

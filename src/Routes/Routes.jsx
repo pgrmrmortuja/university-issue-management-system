@@ -16,6 +16,7 @@ import UpdateIssue from "../Dashboard/Dashboard/User/UpdateIssue";
 import ManageIssues from "../Dashboard/Dashboard/Admin/ManageIssues";
 import IssueDetails from "../Pages/IssueDetails";
 import SavedIssues from "../Pages/SavedIssues";
+import AllIssues from "../Pages/AllIssues";
 
 
 
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: HomeLayout
+            },
+            {
+                path: '/all-issues',
+                Component: AllIssues,
             },
             {
                 path: '/details-issue/:id',
