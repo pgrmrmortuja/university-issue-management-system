@@ -108,7 +108,7 @@ const UserProfile = () => {
         <p className="text-gray-600">{user?.email}</p>
 
         <span className="px-5 py-2 mt-3 text-lg font-semibold bg-blue-600 text-white rounded-full">
-          {info.role || "Student"}
+          {"Student"}
         </span>
 
         {/* MongoDB Additional Info */}
@@ -128,12 +128,12 @@ const UserProfile = () => {
           <p>
             <strong>Last Sign-in:</strong>{" "}
             {user?.metadata?.lastSignInTime
-              ? new Date(user.metadata.creationTime).toLocaleString()
+              ? new Date(user.metadata.lastSignInTime).toLocaleString()
               : "N/A"}
           </p>
         </div>
       </div>
-
+      ====================================================================
       {/* 🔹 Edit Modal */}
       {isEditing && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
