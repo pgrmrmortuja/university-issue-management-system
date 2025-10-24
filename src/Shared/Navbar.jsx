@@ -4,7 +4,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Providers/AuthProvider";
 import userIcon from "../assets/user.png";
-// import city from "../assets/city.jpg";
+import city from "../assets/city_logo-removebg.png";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 import { GiModernCity } from "react-icons/gi";
@@ -154,13 +154,13 @@ const Navbar = () => {
                         </div>
                     </div>
                     <Link to="/" className="flex items-center justify-center gap-2">
-                        <GiModernCity className="text-xl text-pink-600 md:text-2xl"></GiModernCity>
-                        <span className="text-xl font-semibold text-pink-600 md:text-2xl">University</span>
-                        {/* <img
-                                    className="w-16 h-14 object-cover"
-                                    src={city}
-                                    alt="city university logo"
-                                /> */}
+                        {/* <GiModernCity className="text-xl text-pink-600 md:text-2xl"></GiModernCity> */}
+                        <img
+                            className="w-[100px] object-cover"
+                            src={city}
+                            alt="city university logo"
+                        />
+                        {/* <span className="text-xl font-semibold text-pink-600 md:text-2xl">University</span> */}
                     </Link>
                 </div>
 

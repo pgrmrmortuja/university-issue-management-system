@@ -273,8 +273,6 @@ const DetailsForAdmin = () => {
 
 
 
-
-
                     {/* লাইক কাউন্ট */}
                     <p className="mt-3 text-sm text-gray-500">
                         👍 {likes} {likes === 1 ? 'Like' : 'Likes'}

@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { GiModernCity } from "react-icons/gi";
 import { Link } from "react-router";
+import city from "../../src/assets/city_logo-removebg.png"
 
 const Footer = () => {
     return (
@@ -11,10 +12,15 @@ const Footer = () => {
                     {/* Company Info */}
                     <div>
                         <Link to="/" className="flex  items-center gap-2">
-                            <GiModernCity className="text-xl md:text-2xl text-pink-600"></GiModernCity>
-                            <span className="text-xl md:text-2xl text-pink-600 font-semibold">University</span>
+                            {/* <GiModernCity className="text-xl md:text-2xl text-pink-600"></GiModernCity>
+                            <span className="text-xl md:text-2xl text-pink-600 font-semibold">University</span> */}
+                            <img
+                                className="w-[150px] object-cover"
+                                src={city}
+                                alt="city university logo"
+                            />
                         </Link>
-                        <p className="text-sm">
+                        <p className="text-sm mt-2">
                             Your trusted platform for buying, selling, and managing real estate properties effortlessly and securely.
                         </p>
                         <div className="flex items-center gap-3 mt-4">
@@ -67,10 +73,10 @@ const Footer = () => {
                             </li>
                             <li>
                                 <a
-                                    href="/allProperties"
+                                    href="/all-issues"
                                     className="hover:text-blue-500 transition duration-200"
                                 >
-                                    Find Properties
+                                    See Issues
                                 </a>
                             </li>
                             <li>
