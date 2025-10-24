@@ -60,6 +60,9 @@ const Navbar = () => {
                     </NavLink>
                 )
             }
+            <NavLink to="/about" className={linkClass} >
+                About Us
+            </NavLink>
 
             {/* <NavLink to="/all-issues" className={linkClass} >
                 All Issues

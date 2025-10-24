@@ -18,6 +18,7 @@ import IssueDetails from "../Pages/IssueDetails";
 import SavedIssues from "../Pages/SavedIssues";
 import AllIssues from "../Pages/AllIssues";
 import DetailsForAdmin from "../Dashboard/Dashboard/Admin/DetailsForAdmin";
+import AboutUs from "../Pages/AboutUs";
 
 
 
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
             {
                 path: '/all-issues',
                 Component: AllIssues,
+            },
+            {
+                path: '/about',
+                Component: AboutUs,
             },
             {
                 path: '/details-issue/:id',
