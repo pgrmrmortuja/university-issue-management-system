@@ -36,11 +36,12 @@ const Login = () => {
     console.log(email, password);
     signIn(email, password)
       .then(async (result) => {
-        const loggedUser = result.user;           // ✅ result.user কে local var এ ধরলাম
-        await getJwt(loggedUser.email);           // ✅ সঠিক ইমেইল পাঠানো
+        const loggedUser = result.user;           
+        await getJwt(loggedUser.email);          
         setUser(loggedUser);
         toast.success("Login successfully!");
-        navigate(from, { replace: true });
+        // navigate(from, { replace: true });
+        navigate(-1);
       })
       .catch((err) => {
         console.log("Error", err.message);

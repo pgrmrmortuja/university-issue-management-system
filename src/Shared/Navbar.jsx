@@ -61,6 +61,11 @@ const Navbar = () => {
                 )
             }
 
+            {/* <NavLink to="/all-issues" className={linkClass} >
+                All Issues
+            </NavLink> */}
+
+
             {user && (
                 <NavLink to="/contact-us" className={linkClass} >
                     Contact Us
@@ -108,7 +113,7 @@ const Navbar = () => {
                         >
 
                             {/*==========================================================  */}
-                            
+
                             {/*==========================================================  */}
 
                             {links}
@@ -195,7 +200,7 @@ const Navbar = () => {
                                 />
                             )}
                         </div>
-                        
+
                     </div>
 
                     <div className="hidden lg:ml-2 lg:flex lg:items-center lg:gap-3">

@@ -9,7 +9,7 @@ const MainLayout = () => {
     const location = useLocation();
     const navigation = useNavigation();
 
-    const noHeaderFooter = location.pathname.includes('/login') || location.pathname.includes('/signup') || location.pathname.includes('/details-issue/:id');
+    const noHeaderFooter = location.pathname.includes('/login') || location.pathname.includes('/signup') || location.pathname.includes('/details-issue/');
 
 
     return (

@@ -77,7 +77,7 @@ const ManageIssues = () => {
 
                                     {/* ✅ Solve / Solved Button */}
                                     {issue.isSolved ? (
-                                        <span className='font-bold text-blue-400 mr-2'>solved</span>
+                                        <span className='px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mr-2'>solved</span>
                                     ) : (
                                         issue.verification_status !== "rejected" && (
                                             <button
@@ -104,16 +104,16 @@ const ManageIssues = () => {
                                         </>
                                     ) : (
                                         <span
-                                            className={`font-bold ${issue.verification_status === 'verified'
-                                                ? 'text-green-500'
-                                                : 'text-red-500'
+                                            className={`px-3 py-1 text-xs font-semibold rounded-full ${issue.verification_status === 'verified'
+                                                ? 'bg-green-100 text-green-700'
+                                                : 'text-red-600 bg-red-100'
                                                 }`}>
                                             {issue.verification_status}
                                         </span>
                                     )}
 
                                     {/* ✅ Details Link */}
-                                    <Link to={`/details-issue/${issue._id}`}>
+                                    <Link to={`/dashboard/details-issue-admin/${issue._id}`}>
                                         <button className='btn btn-link btn-sm ml-2'>Details</button>
                                     </Link>
                                 </td>
