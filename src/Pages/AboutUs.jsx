@@ -57,23 +57,23 @@ const AboutUs = () => {
             </div>
 
             {/* Mission Section */}
-            <div className="mt-20 text-center">
+            {/* <div className="mt-20 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-purple-700 mb-6">Our Mission</h2>
                 <p className="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto">
                     To empower the university community by providing a platform where students
                     can voice their concerns and the administration can resolve them efficiently,
                     fostering a better, safer, and more organized campus environment.
                 </p>
-            </div>
+            </div> */}
 
             {/* Team / Contact Section */}
-            <div className="mt-20 text-center">
+            {/* <div className="mt-20 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-purple-700 mb-6">Our Team</h2>
                 <p className="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto">
                     Our team consists of dedicated developers and university staff working together
                     to ensure that every student issue is addressed promptly and professionally.
                 </p>
-            </div>
+            </div> */}
         </div>
     );
 };
