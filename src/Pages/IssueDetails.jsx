@@ -180,7 +180,7 @@ const IssueDetails = () => {
 
                     {/* লাইক কাউন্ট */}
                     <p className="mt-3 text-sm text-gray-500">
-                        👍 {likes} {likes === 1 ? 'Like' : 'Likes'}
+                        👍 {likes} {likes === 1 ? 'Agree' : 'Agrees'}
                     </p>
 
                     {/* রিঅ্যাকশন বাটন */}
@@ -192,7 +192,7 @@ const IssueDetails = () => {
                         >
 
                             <FaThumbsUp className="mr-2 text-lg" />
-                            Like
+                            Agree
                         </button>
 
                         {/* <button className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl">

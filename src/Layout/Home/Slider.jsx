@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Slide1 from "../../assets/slide1.jpg";
-import Slide2 from "../../assets/slide2.jpg";
-import Slide3 from "../../assets/slide3.jpg";
+import Slide1 from "../../assets/ct1.png";
+import Slide2 from "../../assets/ct2.png";
+import Slide3 from "../../assets/ct3.png";
 import { Fade } from 'react-awesome-reveal';
 
 const Slider = () => {
@@ -17,9 +17,9 @@ const Slider = () => {
     }, [slides.length]);
 
     return (
-        <div className="w-11/12 mx-auto mb-14 mt-5">
-           
-            <div className="relative w-full overflow-hidden rounded-lg shadow-lg h-56 md:h-[400px] lg:h-[650px]">
+        <div className="w-[97%] mx-auto mb-14 mt-5">
+           {/* lg:h-[650px] */}
+            <div className="relative w-full overflow-hidden rounded-lg shadow-lg h-56 md:h-[450px]">
                 {slides.map((slide, index) => (
                     <div
                         key={index}

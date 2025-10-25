@@ -136,6 +136,24 @@ const ManageUsers = () => {
                                         }
                                     </div>
 
+                                    <div>
+                                        {
+                                            (user.role === "Admin" || user.role === !"Fraud") ?
+                                                (
+                                                    <button
+                                                        className='btn btn-sm bg-blue-500 text-black hover:text-blue-400 border-none rounded-lg'
+                                                        onClick={() => handleRoleChange(user._id, 'User')}>
+                                                        Back as Student
+                                                    </button>
+                                                )
+                                                :
+                                                (
+                                                    user.role === "User" &&
+                                                    <span className='px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700'>Student</span>
+                                                )
+                                        }
+                                    </div>
+
 
                                     <div>
                                         {
@@ -144,7 +162,7 @@ const ManageUsers = () => {
                                                     <button
                                                         className='btn btn-sm  bg-yellow-500 text-black hover:text-yellow-400 border-none rounded-lg'
                                                         onClick={() => handleRoleChange(user._id, 'Fraud')}>
-                                                        Make as Fraud
+                                                        Mark as Fraud
                                                     </button>
                                                 )
                                                 :
@@ -159,7 +177,7 @@ const ManageUsers = () => {
                                 <td className='text-center'>
                                     <button
                                         onClick={() => handleDelete(user._id)}
-                                        className="btn btn-sm bg-red-500 text-black hover:text-red-400 border-none">Delete</button>
+                                        className="btn btn-sm bg-red-500 text-black hover:text-red-400 border-none rounded-lg">Delete</button>
                                 </td>
 
                             </tr>
