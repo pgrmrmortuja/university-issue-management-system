@@ -22,7 +22,7 @@ const SavedIssues = () => {
 
     console.log("issue from savecollection", issues)
 
-    // ✅ সেভ করা পোস্ট রিমুভ করা (আনসেভ)
+ 
     const handleDelete = (savedId) => {
         if (!user?.email) return alert('Please login first');
 
@@ -73,26 +73,26 @@ const SavedIssues = () => {
                 <BackButton />
             </div>
 
-            <div className="min-h-screen bg-gray-100 py-6 px-4">
+            <div className="min-h-screen py-6 px-4">
                 <div className="max-w-5xl mx-auto">
                     <h1 className="text-2xl font-semibold mb-5 text-gray-800 flex items-center gap-2">
                         <FaBookmark className="text-blue-600" /> Saved Issues
                     </h1>
 
-                    {/* যদি কিছু সেভ না থাকে */}
+                
                     {issues.length === 0 ? (
                         <p className="text-gray-500 text-center mt-10">
                             You haven’t saved any issues yet.
                         </p>
                     ) : (
-                        // ✅ গ্রিড লে-আউট (responsive)
+                
                         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                             {issues.map((issue) => (
                                 <div
                                     key={issue._id}
                                     className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition"
                                 >
-                                    {/* পোস্ট ইমেজ */}
+                                
                                     {issue.issue_image && (
                                         <img
                                             src={issue.issue_image}
@@ -101,7 +101,7 @@ const SavedIssues = () => {
                                         />
                                     )}
 
-                                    {/* কনটেন্ট */}
+                               
                                     <div className="p-4">
                                         <h2 className="font-semibold text-gray-800 mb-1">
                                             {issue.issue_title || "Untitled Issue"}

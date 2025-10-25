@@ -97,7 +97,7 @@ const AllIssues = () => {
             )}
 
             {/* Issues Grid */}
-            <div className='shadow-2xl shadow-pink-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='shadow-2xl shadow-red-400 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {filteredIssues.map(item => (
                     <div key={item._id} className="card border border-gray-200 bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 hover:shadow-lg">
 
@@ -128,7 +128,7 @@ const AllIssues = () => {
 
                             <div className="card-actions mt-4">
                                 <Link to={`/details-issue/${item._id}`} className="w-full">
-                                    <button className="btn bg-pink-500 text-white hover:bg-pink-600 transition w-full py-2 rounded-lg">Details</button>
+                                    <button className="btn bg-red-500 text-white hover:bg-red-600 transition w-full py-2 rounded-lg">Details</button>
                                 </Link>
                             </div>
                         </div>

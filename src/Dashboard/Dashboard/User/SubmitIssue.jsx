@@ -101,11 +101,11 @@ const SubmitIssue = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-gray-50">
+    <div className="flex items-center justify-center min-h-screen p-6">
     <title>Submit Issue | University</title>
   <form
     onSubmit={onSubmit}
-    className="w-full max-w-4xl p-8 space-y-6 bg-pink-100 rounded-2xl shadow-lg"
+    className="w-full max-w-4xl p-8 space-y-6 bg-red-100 rounded-2xl shadow-lg"
   >
     <h2 className="mb-10 text-3xl font-bold text-center text-black">
       Submit Issue Form
@@ -276,7 +276,7 @@ const SubmitIssue = () => {
     {/* Submit Button */}
     <button
       type="submit"
-      className="w-full py-3 font-bold text-black bg-pink-500 border-none rounded-lg btn hover:bg-pink-600 hover:text-white"
+      className="w-full py-3 font-bold text-black bg-red-500 border-none rounded-lg btn hover:bg-red-600 hover:text-white"
     >
       Submit Issue
     </button>

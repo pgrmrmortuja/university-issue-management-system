@@ -6,14 +6,14 @@ import city from "../../src/assets/city_logo-removebg.png"
 
 const Footer = () => {
     return (
-        <footer className="bg-pink-200 text-black">
+        <footer className="bg-red-200 text-black">
             <div className="container mx-auto px-4 py-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     {/* Company Info */}
                     <div>
                         <Link to="/" className="flex  items-center gap-2">
-                            {/* <GiModernCity className="text-xl md:text-2xl text-pink-600"></GiModernCity>
-                            <span className="text-xl md:text-2xl text-pink-600 font-semibold">University</span> */}
+                            {/* <GiModernCity className="text-xl md:text-2xl text-red-600"></GiModernCity>
+                            <span className="text-xl md:text-2xl text-red-600 font-semibold">University</span> */}
                             <img
                                 className="w-[150px] object-cover"
                                 src={city}
@@ -52,7 +52,7 @@ const Footer = () => {
                                 href="https://instagram.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="hover:text-pink-500"
+                                className="hover:text-red-500"
                             >
                                 <FaInstagram size={20} />
                             </a>

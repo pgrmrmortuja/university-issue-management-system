@@ -12,7 +12,7 @@ const BackButton = () => {
     return (
         <button
             onClick={handleBack}
-            className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition"
+            className="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
         >
             <FaArrowLeft />
             Back

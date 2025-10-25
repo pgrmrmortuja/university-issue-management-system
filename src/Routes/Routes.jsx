@@ -20,6 +20,7 @@ import AllIssues from "../Pages/AllIssues";
 import DetailsForAdmin from "../Dashboard/Dashboard/Admin/DetailsForAdmin";
 import AboutUs from "../Pages/AboutUs";
 import ManageUsers from "../Dashboard/Dashboard/Admin/ManageUsers";
+import Faq from "../Pages/Faq";
 
 
 
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
             {
                 path: '/about',
                 Component: AboutUs,
+            },
+            {
+                path: '/faq',
+                Component: Faq,
             },
             {
                 path: '/details-issue/:id',

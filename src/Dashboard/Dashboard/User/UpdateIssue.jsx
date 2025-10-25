@@ -79,9 +79,9 @@ const UpdateIssue = () => {
     });
 
     try {
-      let imageUrl = issue_image; // আগের ইমেজ রাখো
+      let imageUrl = issue_image; 
 
-      // যদি নতুন ইমেজ select করে তাহলে আপলোড করো
+     
       if (imageFile) {
         const imageData = new FormData();
         imageData.append("image", imageFile);
@@ -148,7 +148,7 @@ const UpdateIssue = () => {
       <title>Update Issue | University</title>
       <form
         onSubmit={onSubmit}
-        className="w-full max-w-4xl p-8 space-y-6 bg-pink-100 rounded-2xl shadow-lg"
+        className="w-full max-w-4xl p-8 space-y-6 bg-red-100 rounded-2xl shadow-lg"
       >
         <h2 className="mb-10 text-3xl font-bold text-center text-black">
           Update Issue Form
@@ -337,7 +337,7 @@ const UpdateIssue = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 font-bold text-black bg-pink-500 border-none rounded-lg btn hover:bg-pink-600 hover:text-white"
+          className="w-full py-3 font-bold text-black bg-red-500 border-none rounded-lg btn hover:bg-red-600 hover:text-white"
         >
           Update Issue
         </button>

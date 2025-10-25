@@ -41,7 +41,7 @@ const Login = () => {
         setUser(loggedUser);
         toast.success("Login successfully!");
         // navigate(from, { replace: true });
-        navigate(-1);
+        navigate("/");
       })
       .catch((err) => {
         console.log("Error", err.message);
@@ -64,12 +64,12 @@ const Login = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-10 bg-gradient-to-br from-pink-200 via-pink-300 to-pink-400">
+    <div className="flex items-center justify-center min-h-screen px-4 py-10">
       <title>Login | University</title>
 
       {/* Login Card */}
-      <div className="w-full max-w-md p-8 bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl border border-pink-300">
-        <h2 className="mb-6 text-3xl font-bold text-center text-pink-700">
+      <div className="w-full max-w-md p-8 bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl border border-red-300">
+        <h2 className="mb-6 text-3xl font-bold text-center text-red-700">
           Welcome 👋
         </h2>
 
@@ -114,7 +114,7 @@ const Login = () => {
           </div>
 
           {/* Login Button */}
-          <button className="w-full py-2 font-semibold text-white transition duration-300 bg-pink-600 rounded-lg hover:bg-pink-700">
+          <button className="w-full py-2 font-semibold text-white transition duration-300 bg-red-600 rounded-lg hover:bg-red-700">
             Login
           </button>
         </form>
@@ -132,7 +132,7 @@ const Login = () => {
           Don’t have an account?{" "}
           <Link
             to="/signup"
-            className="font-semibold text-pink-600 hover:underline"
+            className="font-semibold text-red-600 hover:underline"
           >
             Register
           </Link>
