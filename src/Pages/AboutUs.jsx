@@ -1,5 +1,6 @@
 // AboutUs.jsx
 import React from "react";
+import IssueStatsChart from "./IssueStatsChart";
 
 const AboutUs = () => {
     return (
@@ -74,6 +75,9 @@ const AboutUs = () => {
                     to ensure that every student issue is addressed promptly and professionally.
                 </p>
             </div> */}
+
+
+            <IssueStatsChart/>
         </div>
     );
 };
