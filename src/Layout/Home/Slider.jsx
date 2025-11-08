@@ -1,58 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import Slide1 from "../../assets/ct1.png";
-import Slide2 from "../../assets/ct2.png";
-import Slide3 from "../../assets/ct3.png";
-import { Fade } from 'react-awesome-reveal';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import c1 from '/src/assets/campus1.png'
+import c2 from '/src/assets/campus2.png'
+import c3 from '/src/assets/campus3.png'
+import c4 from '/src/assets/campus4.png'
+import c5 from '/src/assets/campus5.png'
+
+// Swiper styles import
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+// Swiper modules import
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 const Slider = () => {
-    const slides = [Slide1, Slide2, Slide3];
-    const [currentSlide, setCurrentSlide] = useState(0);
-
-    // Automatically change slides every 3 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-        }, 3000);
-        return () => clearInterval(interval); // Cleanup on component unmount
-    }, [slides.length]);
-
     return (
-        <div className="w-[97%] mx-auto mb-14 mt-5">
-           {/* lg:h-[650px] */}
-            <div className="relative w-full overflow-hidden rounded-lg shadow-lg h-56 md:h-[450px]">
-                {slides.map((slide, index) => (
-                    <div
-                        key={index}
-                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                            index === currentSlide ? 'opacity-100' : 'opacity-0'
-                        }`}
-                    >
-                        <Fade>
-                            <img
-                                src={slide}
-                                alt={`Slide ${index + 1}`}
-                                className="w-full h-full object-cover"
-                            />
-                        </Fade>
-                    </div>
-                ))}
-            </div>
-
-            {/* Pagination Dots */}
-            <div className="flex justify-center mt-4 space-x-2">
-                {slides.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-colors ${
-                            index === currentSlide ? 'bg-blue-500' : 'bg-gray-300'
-                        }`}
+        <div className="w-full rounded-2xl overflow-hidden shadow-lg">
+            <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                }}
+                pagination={{
+                    clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
+            >
+                {/* Slide 1 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/ct1.png"
+                        alt="Campus"
+                        className="w-full h-[300px] md:h-[500px] object-cover"
                     />
-                ))}
-            </div>
+                </SwiperSlide>
+
+                {/* Slide 1 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/campus1.png"
+                        alt="Report Campus Issues Easily"
+                        className="w-full h-[300px] md:h-[500px] object-cover"
+                    />
+                </SwiperSlide>
+
+                {/* Slide 2 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/campus2.png"
+                        alt="Keep Your Campus Problem-Free"
+                        className="w-full  h-[300px] md:h-[500px] object-cover"
+                    />
+                </SwiperSlide>
+
+                {/* Slide 3 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/campus3.png"
+                        alt="Smart Issue Management System"
+                        className="w-full h-[300px] md:h-[500px] object-cover"
+                    />
+                </SwiperSlide>
+
+                {/* Slide 4 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/campus4.png"
+                        alt="Track, Solve, and Improve University Life"
+                        className="w-full h-[300px] md:h-[500px] object-cover"
+                    />
+                </SwiperSlide>
+
+                {/* Slide 5 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/campus5.png"
+                        alt="Together for a Better Campus"
+                        className="w-full  h-[300px] md:h-[500px] object-cover"
+                    />
+                </SwiperSlide>
+
+                {/* Slide 5 */}
+                <SwiperSlide>
+                    <img
+                        src="/src/assets/ct3.png"
+                        alt="Campus"
+                        className="w-full h-[300px] md:h-[500px] object-cover"
+                    />
+                </SwiperSlide>
+
+            </Swiper>
         </div>
     );
 };
 
 export default Slider;
-
