@@ -81,7 +81,7 @@ const Navbar = () => {
             {
                 user && (
                     <NavLink to="/faq" className={linkClass} >
-                        Faq
+                        FAQ
                     </NavLink>
                 )
             }
@@ -96,7 +96,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="bg-red-200">
+        <nav className="bg-white">
             <div className="container px-4 mx-auto navbar">
                 {/* Start Section */}
                 <div className="navbar-start">

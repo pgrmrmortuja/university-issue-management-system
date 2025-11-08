@@ -144,7 +144,7 @@ const UpdateIssue = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6 bg-gray-50">
+    <div className="flex items-center justify-center min-h-screen p-6">
       <title>Update Issue | University</title>
       <form
         onSubmit={onSubmit}

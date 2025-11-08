@@ -1,99 +1,66 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import c1 from '/src/assets/campus1.png'
-import c2 from '/src/assets/campus2.png'
-import c3 from '/src/assets/campus3.png'
-import c4 from '/src/assets/campus4.png'
-import c5 from '/src/assets/campus5.png'
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import f1 from '/src/assets/campus1.png'
+import f2 from '/src/assets/campus2.png'
+import f3 from '/src/assets/campus3.png'
+import f4 from '/src/assets/campus4.png'
+import f5 from '/src/assets/campus5.png'
 
-// Swiper styles import
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+// Swiper core styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
 
-// Swiper modules import
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+// Import required modules
+import { EffectCoverflow, Pagination, Autoplay } from 'swiper/modules';
 
 const Slider = () => {
+    const images = [f1, f2, f3, f4, f5];
+
     return (
-        <div className="w-full rounded-2xl overflow-hidden shadow-lg">
+        <div className='py-8 sm:py-10 mt-6 sm:mt-10 mb-6 sm:mb-10'>
+            <h2 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-semibold text-center mb-4 sm:mb-6 text-red-500">
+                Welcome to
+            </h2>
+
             <Swiper
-                spaceBetween={30}
+                effect={'coverflow'}
+                grabCursor={true}
                 centeredSlides={true}
+                loop={true}
+                speed={3000}
                 autoplay={{
-                    delay: 3000,
+                    delay: 0,
                     disableOnInteraction: false,
                 }}
-                pagination={{
-                    clickable: true,
+                coverflowEffect={{
+                    rotate: 40,
+                    stretch: 0,
+                    depth: 120,
+                    modifier: 1,
+                    slideShadows: true,
                 }}
-                navigation={true}
-                modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper"
+                pagination={false}
+                modules={[EffectCoverflow, Pagination, Autoplay]}
+                className="mySwiper w-full 2xl:max-w-[1400px] mx-auto"
+                breakpoints={{
+                    320: { slidesPerView: 1, spaceBetween: 12 },
+                    640: { slidesPerView: 1, spaceBetween: 16 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 24 },
+                    1280: { slidesPerView: 2, spaceBetween: 24 },
+                    1536: { slidesPerView: 2, spaceBetween: 24 },
+                }}
             >
-                {/* Slide 1 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/ct1.png"
-                        alt="Campus"
-                        className="w-full h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
-                {/* Slide 1 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/campus1.png"
-                        alt="Report Campus Issues Easily"
-                        className="w-full h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
-                {/* Slide 2 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/campus2.png"
-                        alt="Keep Your Campus Problem-Free"
-                        className="w-full  h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
-                {/* Slide 3 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/campus3.png"
-                        alt="Smart Issue Management System"
-                        className="w-full h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
-                {/* Slide 4 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/campus4.png"
-                        alt="Track, Solve, and Improve University Life"
-                        className="w-full h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
-                {/* Slide 5 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/campus5.png"
-                        alt="Together for a Better Campus"
-                        className="w-full  h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
-                {/* Slide 5 */}
-                <SwiperSlide>
-                    <img
-                        src="/src/assets/ct3.png"
-                        alt="Campus"
-                        className="w-full h-[300px] md:h-[500px] object-cover"
-                    />
-                </SwiperSlide>
-
+                {images.map((src, index) => (
+                    <SwiperSlide key={index} className="flex justify-center">
+                        <img
+                            src={src}
+                            alt={`Video ${index + 1}`}
+                            className="rounded-lg sm:rounded-xl w-full h-auto aspect-[16/9] object-cover"
+                        />
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </div>
     );

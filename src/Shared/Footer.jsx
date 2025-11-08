@@ -6,9 +6,9 @@ import city from "../../src/assets/city_logo-removebg.png"
 
 const Footer = () => {
     return (
-        <footer className="bg-red-200 text-black">
+        <footer className="bg-white text-black">
             <div className="max-w-[1200px] mx-auto px-4 py-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="flex flex-col md:flex-row gap-10 justify-evenly">
                     {/* Company Info */}
                     <div>
                         <Link to="/" className="flex items-center gap-2 mb-4">
@@ -19,9 +19,12 @@ const Footer = () => {
                             />
                         </Link>
 
-                        <p className="text-sm mt-2">
-                            University Issue Management System – A reliable platform for students and staff to report, track, and resolve university-related issues. Easily submit issues, track their progress and get support efficiently.
+                        <p className="text-sm mt-2 text-left">
+                            University Issue Management System – 
                         </p>
+                        <p className="text-sm mt-2 text-left">A reliable platform for students and staff</p>
+                        <p className="text-sm mt-2 text-left"> to report, track, and resolve university-related issues.</p>
+                        <p className="text-sm mt-2 text-left">Easily submit issues,track their progress and get support efficiently.</p>
 
                         <p className="text-sm mt-4">
                             Office Hours: Fri - Tue, 9:00 AM - 4:00 PM
@@ -44,7 +47,7 @@ const Footer = () => {
                     </div>
 
                     {/* Contact Information */}
-                    <div>
+                    <div className="mt-10">
                         <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
                         <ul className="space-y-2 text-sm">
                             <li><strong>Phone:</strong></li>

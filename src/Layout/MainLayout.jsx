@@ -13,13 +13,18 @@ const MainLayout = () => {
 
 
     return (
-        <div className='flex flex-col'>
-            
-            {noHeaderFooter || <Navbar></Navbar>}
-            
-            
+        <div
+            className='flex flex-col bg-no-repeat bg-cover bg-fixed'
+            style={{
+                backgroundImage: "url('/Sprinkle.svg')",
+            }}
+        >
 
-             <main className="max-w-11/12 min-h-screen mx-auto">
+            {noHeaderFooter || <Navbar></Navbar>}
+
+
+
+            <main className="max-w-11/12 min-h-screen mx-auto">
                 {
                     navigation.state === 'loading'
                         ? <Loading />
@@ -27,9 +32,9 @@ const MainLayout = () => {
                 }
             </main>
 
-            
+
             {noHeaderFooter || <Footer></Footer>}
-           
+
 
         </div>
     );

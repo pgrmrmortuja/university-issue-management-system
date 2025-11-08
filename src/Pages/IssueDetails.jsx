@@ -118,7 +118,7 @@ const IssueDetails = () => {
 
 
                 <div className="w-full max-w-xl p-4 mt-10 bg-white rounded-2xl shadow-md">
-                    {/* পোস্ট হেডার */}
+                    {/*  */}
                     <div className="flex items-center gap-3 mb-3">
                         <img
                             src={student_image}
@@ -133,18 +133,18 @@ const IssueDetails = () => {
                         </div>
                     </div>
 
-                    {/* পোস্ট টাইটেল */}
+                    {/*  */}
                     <h3 className="mb-2 text-lg font-semibold text-gray-800">{issue_title}</h3>
 
-                    {/* লোকেশন */}
+                    {/**/}
                     {issue_location && (
                         <p className="text-sm text-gray-500 mb-2">📍 {issue_location}</p>
                     )}
 
-                    {/* বিস্তারিত */}
+                    {/*  */}
                     <p className="mb-3 text-gray-700">{issue_details}</p>
 
-                    {/* ইমেজ */}
+                    {/**/}
                     {issue_image && (
                         <div className="overflow-hidden rounded-xl">
                             <img
@@ -155,7 +155,7 @@ const IssueDetails = () => {
                         </div>
                     )}
 
-                    {/* স্ট্যাটাস ব্যাজ */}
+                    {/*  */}
                     <div className="flex items-center gap-2 mt-3">
                         {verification_status && (
                             <span
@@ -178,12 +178,12 @@ const IssueDetails = () => {
                         )}
                     </div>
 
-                    {/* লাইক কাউন্ট */}
+                    {/* */}
                     <p className="mt-3 text-sm text-gray-500">
                         👍 {likes} {likes === 1 ? 'Agree' : 'Agrees'}
                     </p>
 
-                    {/* রিঅ্যাকশন বাটন */}
+                    {/* */}
                     <div className="flex items-center justify-between mt-3 border-t border-gray-200">
                         <button
                             onClick={handleLike}

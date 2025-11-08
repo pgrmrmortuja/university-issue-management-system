@@ -64,11 +64,11 @@ const Login = () => {
 
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-10">
+    <div className="max-w-xl mx-auto  px-4 py-10">
       <title>Login | University</title>
 
       {/* Login Card */}
-      <div className="w-full max-w-md p-8 bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl border border-red-300">
+      <div className="p-8 bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl border border-red-300">
         <h2 className="mb-6 text-3xl font-bold text-center text-red-700">
           Welcome 👋
         </h2>

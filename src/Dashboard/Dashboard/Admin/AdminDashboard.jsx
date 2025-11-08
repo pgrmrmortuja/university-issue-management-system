@@ -16,7 +16,7 @@ const AdminDashboard = () => {
                 {/* Top Navbar Area */}
                 <div className="drawer-content flex flex-col min-h-screen">
                     <div className="flex items-center justify-between bg-base-200 p-3 shadow-md">
-                        {/* ✅ Hamburger Icon */}
+                        {/* Hamburger Icon */}
                         <label
                             htmlFor="my-drawer"
                             className="btn btn-ghost text-2xl"
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
                         className="drawer-overlay"
                     ></label>
                     <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 space-y-2">
-                        {/* ✅ Cross Icon */}
+                        {/* Cross Icon */}
                         <li className="flex justify-end ml-56">
                             <label htmlFor="my-drawer" className="btn btn-ghost text-2xl">
                                 <HiX />

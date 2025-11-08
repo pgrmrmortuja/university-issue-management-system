@@ -40,7 +40,7 @@ const AllIssues = () => {
                 <BackButton />
             </div>
 
-            <h1 className="text-4xl font-bold mb-10 text-center">All Issues</h1>
+            <h1 className="text-4xl font-bold mb-10 text-center text-red-500">All Issues</h1>
 
             {/* Search and Filters */}
             <div className="flex flex-col md:flex-row gap-4 justify-center mb-6">
