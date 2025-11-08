@@ -119,7 +119,7 @@ const UserProfile = () => {
             });
             setIsEditing(true);
           }}
-          className="absolute top-4 right-4 text-blue-600 hover:text-blue-800"
+          className="absolute top-4 right-4 text-red-600 hover:text-red-800"
         >
           <FaEdit size={24} />
         </button>
@@ -127,7 +127,7 @@ const UserProfile = () => {
         <img
           src={user?.photoURL || "https://via.placeholder.com/150"}
           alt="User Avatar"
-          className="w-32 h-32 rounded-full border-4 border-blue-400 shadow-md"
+          className="w-32 h-32 rounded-full border-4 border-red-400 shadow-md"
         />
 
         <h3 className="text-2xl font-medium mt-4">
@@ -135,7 +135,7 @@ const UserProfile = () => {
         </h3>
         <p className="text-gray-600">{user?.email}</p>
 
-        <span className="px-5 py-2 mt-3 text-lg font-semibold bg-blue-600 text-white rounded-full">
+        <span className="px-5 py-2 mt-3 text-lg font-semibold bg-red-600 text-white rounded-full">
           {"Student"}
         </span>
 
