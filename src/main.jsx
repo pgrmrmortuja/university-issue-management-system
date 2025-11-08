@@ -17,7 +17,7 @@ const root = document.getElementById("root");
 ReactDOM.createRoot(root).render(
   <AuthProvider>
       <QueryClientProvider client={queryClient}>
-          <div className='max-w-screen mx-auto'>
+          <div className='max-w-screen'>
             <RouterProvider router={router} />
           </div>
           <ToastContainer />

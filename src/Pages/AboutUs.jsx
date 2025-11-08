@@ -1,15 +1,18 @@
 // AboutUs.jsx
 import React from "react";
 import IssueStatsChart from "./IssueStatsChart";
+import IssueStats from "./IssueStats";
 
 const AboutUs = () => {
     return (
-        <div className="min-h-screen px-5 md:px-20 py-16">
+        <div className="w-full px-5 md:px-20 py-16">
+           
             {/* Heading Section */}
             <div className="text-center mb-16">
                 <h1 className="text-4xl md:text-5xl font-bold text-red-700 mb-4">
                     About Us
                 </h1>
+                 <IssueStats/>
                 <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
                     Our University Issue Management System is designed to streamline the reporting
                     and resolution of campus issues. We aim to provide a seamless platform for
@@ -78,6 +81,7 @@ const AboutUs = () => {
 
 
             <IssueStatsChart/>
+
         </div>
     );
 };

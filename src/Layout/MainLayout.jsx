@@ -19,7 +19,7 @@ const MainLayout = () => {
             
             
 
-             <main className=" w-11/12 min-h-screen mx-auto">
+             <main className="max-w-11/12 min-h-screen mx-auto">
                 {
                     navigation.state === 'loading'
                         ? <Loading />
