@@ -41,9 +41,20 @@ const Navbar = () => {
 
     const links = (
         <>
-            <NavLink to="/" className={linkClass} >
-                Home
-            </NavLink>
+            {/* {
+                user && (
+
+                )
+            } */}
+
+            {
+                user && (
+                    <NavLink to="/" className={linkClass} >
+                        Home
+                    </NavLink>
+                )
+            }
+
             {
                 user &&
                 (
@@ -60,19 +71,20 @@ const Navbar = () => {
                     </NavLink>
                 )
             }
-            <NavLink to="/about" className={linkClass} >
-                About Us
-            </NavLink>
-            <NavLink to="/faq" className={linkClass} >
-                Faq
-            </NavLink>
-
-
-            {user && (
-                <NavLink to="/contact-us" className={linkClass} >
-                    Contact Us
-                </NavLink>
-            )}
+            {
+                user && (
+                    <NavLink to="/about" className={linkClass} >
+                        About Us
+                    </NavLink>
+                )
+            }
+            {
+                user && (
+                    <NavLink to="/faq" className={linkClass} >
+                        Faq
+                    </NavLink>
+                )
+            }
 
         </>
     );
