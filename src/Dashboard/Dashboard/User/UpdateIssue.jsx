@@ -5,6 +5,8 @@ import { AuthContext } from '../../../Providers/AuthProvider';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { useNavigate, useParams } from 'react-router';
+import StudentRoute from '../../../Routes/StudentRoute';
+import BackButton from '../../../../src/Shared/BackButton'
 
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -79,9 +81,9 @@ const UpdateIssue = () => {
     });
 
     try {
-      let imageUrl = issue_image; 
+      let imageUrl = issue_image;
 
-     
+
       if (imageFile) {
         const imageData = new FormData();
         imageData.append("image", imageFile);
@@ -144,205 +146,216 @@ const UpdateIssue = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6">
-      <title>Update Issue | University</title>
-      <form
-        onSubmit={onSubmit}
-        className="w-full max-w-4xl p-8 space-y-6 bg-red-100 rounded-2xl shadow-lg"
-      >
-        <h2 className="mb-10 text-3xl font-bold text-center text-black">
-          Update Issue Form
-        </h2>
-
-        {/* Student Info */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Student Name
-            </label>
-            <input
-              type="text"
-              name="student_name"
-              defaultValue={user?.displayName || ""}
-              readOnly
-              className="w-full bg-white border-2 border-gray-300 rounded-lg input input-bordered"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Student Email
-            </label>
-            <input
-              type="email"
-              name="student_email"
-              defaultValue={user?.email || ""}
-              readOnly
-              className="w-full bg-white border-2 border-gray-300 rounded-lg input input-bordered"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Student Image URL
-            </label>
-            <input
-              type="text"
-              name="student_image"
-              defaultValue={user?.photoURL || ""}
-              readOnly
-              className="w-full bg-white border-2 border-gray-300 rounded-lg input input-bordered"
-            />
-          </div>
+    <StudentRoute>
+      <div>
+        <div className="m-6">
+          <BackButton />
         </div>
+        
+        <div className="flex items-center justify-center min-h-screen p-6">
+          <title>Update Issue | University</title>
 
-        {/* Issue Inputs */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Category
-            </label>
-            <select
-              name="issue_category"
-              value={issue_category || ""}
-              onChange={(e) => setItem({ ...item, issue_category: e.target.value })}
-              className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+
+          <form
+            onSubmit={onSubmit}
+            className="w-full max-w-4xl p-8 space-y-6 bg-red-100 rounded-2xl shadow-lg"
+          >
+            <h2 className="mb-10 text-3xl font-bold text-center text-black">
+              Update Issue Form
+            </h2>
+
+            {/* Student Info */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Student Name
+                </label>
+                <input
+                  type="text"
+                  name="student_name"
+                  defaultValue={user?.displayName || ""}
+                  readOnly
+                  className="w-full bg-white border-2 border-gray-300 rounded-lg input input-bordered"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Student Email
+                </label>
+                <input
+                  type="email"
+                  name="student_email"
+                  defaultValue={user?.email || ""}
+                  readOnly
+                  className="w-full bg-white border-2 border-gray-300 rounded-lg input input-bordered"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Student Image URL
+                </label>
+                <input
+                  type="text"
+                  name="student_image"
+                  defaultValue={user?.photoURL || ""}
+                  readOnly
+                  className="w-full bg-white border-2 border-gray-300 rounded-lg input input-bordered"
+                />
+              </div>
+            </div>
+
+            {/* Issue Inputs */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Category
+                </label>
+                <select
+                  name="issue_category"
+                  value={issue_category || ""}
+                  onChange={(e) => setItem({ ...item, issue_category: e.target.value })}
+                  className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+                >
+                  <option value="" disabled>Select a category</option>
+                  <option value="Academic">Academic</option>
+                  <option value="Classroom">Classroom</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Hall">Hall</option>
+                  <option value="IT">IT</option>
+                  <option value="Library">Library</option>
+                  <option value="Canteen">Canteen</option>
+                  <option value="Transport">Transport</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Issue Title
+                </label>
+                <input
+                  type="text"
+                  name="issue_title"
+                  defaultValue={issue_title}
+                  placeholder="Issue Title"
+                  className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Issue Location (e.g., Room 101)
+                </label>
+                <input
+                  type="text"
+                  name="issue_location"
+                  defaultValue={issue_location}
+                  placeholder="Issue Location"
+                  required
+                  className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+                />
+              </div>
+            </div>
+
+
+            {/* Upload Image */}
+            <div>
+              <label className="block mb-2 text-sm font-semibold text-gray-700">
+                Upload Image
+              </label>
+
+              {(previewImage || issue_image) && (
+                <img
+                  src={previewImage ? previewImage : issue_image}
+                  alt="Issue preview"
+                  className="w-32 h-32 object-cover rounded-lg mb-2"
+                />
+              )}
+
+              <input
+                type="file"
+                name="issue_image"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const imageURL = URL.createObjectURL(file);
+                    setPreviewImage(imageURL);
+                  }
+                }}
+                className="w-full text-black bg-white border-2 border-gray-300 rounded-lg file-input"
+              />
+            </div>
+
+
+
+            {/* Date & Time */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Status
+                </label>
+                <input
+                  type="text"
+                  name="verification_status"
+                  defaultValue={verification_status}
+                  readOnly
+                  className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg cursor-not-allowed"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Issue Date
+                </label>
+                <input
+                  type="date"
+                  name="issue_date"
+                  defaultValue={issue_date}
+                  className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">
+                  Issue Time
+                </label>
+                <input
+                  type="time"
+                  name="issue_time"
+                  defaultValue={issue_time}
+                  className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Details */}
+            <div>
+              <label className="block mb-2 text-sm font-semibold text-gray-700">
+                Issue Details
+              </label>
+              <textarea
+                name="issue_details"
+                placeholder="Describe the issue in detail..."
+                defaultValue={issue_details}
+                className="w-full h-28 text-black bg-white border-2 border-gray-300 rounded-lg"
+              ></textarea>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full py-3 font-bold text-black bg-red-500 border-none rounded-lg btn hover:bg-red-600 hover:text-white"
             >
-              <option value="" disabled>Select a category</option>
-              <option value="Academic">Academic</option>
-              <option value="Classroom">Classroom</option>
-              <option value="Finance">Finance</option>
-              <option value="Hall">Hall</option>
-              <option value="IT">IT</option>
-              <option value="Library">Library</option>
-              <option value="Canteen">Canteen</option>
-              <option value="Transport">Transport</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Issue Title
-            </label>
-            <input
-              type="text"
-              name="issue_title"
-              defaultValue={issue_title}
-              placeholder="Issue Title"
-              className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Issue Location (e.g., Room 101)
-            </label>
-            <input
-              type="text"
-              name="issue_location"
-              defaultValue={issue_location}
-              placeholder="Issue Location"
-              required
-              className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
-            />
-          </div>
+              Update Issue
+            </button>
+          </form>
         </div>
+      </div>
+    </StudentRoute>
 
-
-        {/* Upload Image */}
-        <div>
-          <label className="block mb-2 text-sm font-semibold text-gray-700">
-            Upload Image
-          </label>
-
-          {(previewImage || issue_image) && (
-            <img
-              src={previewImage ? previewImage : issue_image}
-              alt="Issue preview"
-              className="w-32 h-32 object-cover rounded-lg mb-2"
-            />
-          )}
-
-          <input
-            type="file"
-            name="issue_image"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) {
-                const imageURL = URL.createObjectURL(file);
-                setPreviewImage(imageURL);
-              }
-            }}
-            className="w-full text-black bg-white border-2 border-gray-300 rounded-lg file-input"
-          />
-        </div>
-
-
-
-        {/* Date & Time */}
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Status
-            </label>
-            <input
-              type="text"
-              name="verification_status"
-              defaultValue={verification_status}
-              readOnly
-              className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg cursor-not-allowed"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Issue Date
-            </label>
-            <input
-              type="date"
-              name="issue_date"
-              defaultValue={issue_date}
-              className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-semibold text-gray-700">
-              Issue Time
-            </label>
-            <input
-              type="time"
-              name="issue_time"
-              defaultValue={issue_time}
-              className="w-full px-4 py-2 text-black bg-white border-2 border-gray-300 rounded-lg"
-            />
-          </div>
-        </div>
-
-        {/* Details */}
-        <div>
-          <label className="block mb-2 text-sm font-semibold text-gray-700">
-            Issue Details
-          </label>
-          <textarea
-            name="issue_details"
-            placeholder="Describe the issue in detail..."
-            defaultValue={issue_details}
-            className="w-full h-28 text-black bg-white border-2 border-gray-300 rounded-lg"
-          ></textarea>
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full py-3 font-bold text-black bg-red-500 border-none rounded-lg btn hover:bg-red-600 hover:text-white"
-        >
-          Update Issue
-        </button>
-      </form>
-    </div>
   );
 };
 

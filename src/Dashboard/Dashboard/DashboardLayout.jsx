@@ -13,13 +13,18 @@ const DashboardLayout = () => {
         role = decoded.role;
     }
 
-    console.log("role from dashboard:",role);
+    console.log("role from dashboard:", role);
 
     return (
-        <div className="w-full mx-auto">
+        <div
+            // className='flex flex-col bg-no-repeat bg-cover bg-fixed'
+            // style={{
+            //     backgroundImage: "url('/Sprinkle.svg')",
+            // }}
+            className="w-full mx-auto ">
             <div>
-                {role === 'Admin' && <AdminDashboard/>}
-                {role === 'User' && <UserDashboard/>}
+                {role === 'Admin' && <AdminDashboard />}
+                {role === 'User' && <UserDashboard />}
             </div>
 
         </div>

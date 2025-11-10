@@ -1,5 +1,6 @@
 import { HiMenu, HiX } from 'react-icons/hi';
 import { NavLink, Outlet } from 'react-router';
+// import AdminRoute from '../../../../src/Routes/AdminRoute'
 
 const AdminDashboard = () => {
 
@@ -9,8 +10,11 @@ const AdminDashboard = () => {
             : " p-2 rounded-lg hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-blue-500";
 
     return (
+
         <div>
-            <div className="drawer">
+            <div
+
+                className="drawer">
                 <input id="my-drawer" type="checkbox" className="drawer-toggle peer" />
 
                 {/* Top Navbar Area */}
@@ -26,7 +30,10 @@ const AdminDashboard = () => {
                     </div>
 
                     {/* Page Content */}
-                    <div className="w-11/12 mx-auto">
+
+                    <div
+
+                        className="w-11/12 mx-auto">
                         <Outlet />
                     </div>
                 </div>
@@ -57,7 +64,7 @@ const AdminDashboard = () => {
                             <NavLink to="manage-issues" className={linkClass} >
                                 Manage Issues
                             </NavLink>
-                        </li> 
+                        </li>
                         <li>
                             <NavLink to="/saved-issues" className={linkClass} >
                                 Saved Issues
@@ -68,12 +75,14 @@ const AdminDashboard = () => {
                                 Manage Users
                             </NavLink>
                         </li>
-                        <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
+                        <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
 
                     </ul>
                 </div>
             </div>
         </div>
+
+
     );
 };
 

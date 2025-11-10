@@ -49,7 +49,7 @@ const UserDashboard = () => {
                         {/* Sidebar Links */}
 
                         <li>
-                            <NavLink to="user-profile" className={linkClass} >
+                            <NavLink to="student-profile" className={linkClass} >
                                 My Profile
                             </NavLink>
                         </li>

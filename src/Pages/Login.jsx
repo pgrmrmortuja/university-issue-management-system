@@ -64,7 +64,7 @@ const Login = () => {
 
 
   return (
-    <div className="max-w-xl mx-auto  px-4 py-10">
+    <div className="max-w-7xl mx-auto  px-4 py-10 flex items-center justify-center min-h-screen">
       <title>Login | University</title>
 
       {/* Login Card */}

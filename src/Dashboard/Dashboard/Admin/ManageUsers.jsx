@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { useQuery } from '@tanstack/react-query';
 // import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import AdminRoute from '../../../Routes/AdminRoute';
 
 const ManageUsers = () => {
 
@@ -91,101 +92,108 @@ const ManageUsers = () => {
 
 
     return (
-        <div className="container mx-auto my-10 px-4">
+        <AdminRoute>
+            <div className="container mx-auto my-10 px-4">
 
-            <title>Manage Users | University</title>
+                <title>Manage Users | University</title>
 
-            <h1 className="text-4xl font-bold mb-10 text-center">Manage Users</h1>
+                <h1 className="text-4xl font-bold mb-10 text-center">Manage Users</h1>
 
-            <div className="overflow-x-auto">
-                <table className="table table-xs w-full">
-                    <thead>
-                        <tr>
-                            <th className='text-center'>SL</th>
-                            <th className='text-center'>User Name</th>
-                            <th className='text-center'>User Email</th>
-                            <th className='text-center'>Actions</th>
-                            <th className='text-center'>Remove User</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user, index) => (
-                            <tr key={user._id}>
-                                <th className='text-center'>{index + 1}</th>
-                                <td className='text-center'>{user.name}</td>
-                                <td className='text-center'>{user.email}</td>
-
-
-
-                                <td className='text-center flex justify-center items-center gap-3 m-1'>
-                                    <div>
-                                        {
-                                            (user.role === "User" || user.role === !"Fraud") ?
-                                                (
-                                                    <button
-                                                        className='btn btn-sm bg-green-500 text-black hover:text-green-400 border-none rounded-lg'
-                                                        onClick={() => handleRoleChange(user._id, 'Admin')}>
-                                                        Make Admin
-                                                    </button>
-                                                )
-                                                :
-                                                (
-                                                    user.role === "Admin" &&
-                                                    <span className='px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700'>{user.role}</span>
-                                                )
-                                        }
-                                    </div>
-
-                                    <div>
-                                        {
-                                            (user.role === "Admin" || user.role === !"Fraud") ?
-                                                (
-                                                    <button
-                                                        className='btn btn-sm bg-blue-500 text-black hover:text-blue-400 border-none rounded-lg'
-                                                        onClick={() => handleRoleChange(user._id, 'User')}>
-                                                        Back as Student
-                                                    </button>
-                                                )
-                                                :
-                                                (
-                                                    user.role === "User" &&
-                                                    <span className='px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700'>Student</span>
-                                                )
-                                        }
-                                    </div>
-
-
-                                    <div>
-                                        {
-                                            (user.role === "User") ?
-                                                (
-                                                    <button
-                                                        className='btn btn-sm  bg-yellow-500 text-black hover:text-yellow-400 border-none rounded-lg'
-                                                        onClick={() => handleRoleChange(user._id, 'Fraud')}>
-                                                        Mark as Fraud
-                                                    </button>
-                                                )
-                                                :
-                                                (
-                                                    user.role === "Fraud" &&
-                                                    <span className='px-3 py-1 text-xs font-semibold rounded-full text-red-600 bg-red-100'>{user.role}</span>
-                                                )
-                                        }
-                                    </div>
-                                </td>
-
-                                <td className='text-center'>
-                                    <button
-                                        onClick={() => handleDelete(user._id)}
-                                        className="btn btn-sm bg-red-500 text-black hover:text-red-400 border-none rounded-lg">Delete</button>
-                                </td>
-
+                <div className="overflow-x-auto">
+                    <table className="table table-xs w-full">
+                        <thead>
+                            <tr>
+                                <th className='text-center'>SL</th>
+                                <th className='text-center'>User</th>
+                                <th className='text-center'>User Email</th>
+                                <th className='text-center'>Actions</th>
+                                <th className='text-center'>Remove User</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {users.map((user, index) => (
+                                <tr key={user._id}>
+                                    <th className='text-center'>{index + 1}</th>
+                                    <td className='flex items-center gap-2'>
+                                        
+                                        <img className='w-8 h-8 rounded-full' src={user.photoURL} alt={user.name} />
+                                        <div>{user.name}</div>
+                                    </td>
+                                    <td className='text-center'>{user.email}</td>
+
+
+
+                                    <td className='text-center flex justify-center items-center gap-3 m-1'>
+                                        <div>
+                                            {
+                                                (user.role === "User" || user.role === !"Fraud") ?
+                                                    (
+                                                        <button
+                                                            className='btn btn-sm bg-green-500 text-black hover:text-green-400 border-none rounded-lg'
+                                                            onClick={() => handleRoleChange(user._id, 'Admin')}>
+                                                            Make Admin
+                                                        </button>
+                                                    )
+                                                    :
+                                                    (
+                                                        user.role === "Admin" &&
+                                                        <span className='px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700'>{user.role}</span>
+                                                    )
+                                            }
+                                        </div>
+
+                                        <div>
+                                            {
+                                                (user.role === "Admin" || user.role === !"Fraud") ?
+                                                    (
+                                                        <button
+                                                            className='btn btn-sm bg-blue-500 text-black hover:text-blue-400 border-none rounded-lg'
+                                                            onClick={() => handleRoleChange(user._id, 'User')}>
+                                                            Back as Student
+                                                        </button>
+                                                    )
+                                                    :
+                                                    (
+                                                        user.role === "User" &&
+                                                        <span className='px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700'>Student</span>
+                                                    )
+                                            }
+                                        </div>
+
+
+                                        <div>
+                                            {
+                                                (user.role === "User") ?
+                                                    (
+                                                        <button
+                                                            className='btn btn-sm  bg-yellow-500 text-black hover:text-yellow-400 border-none rounded-lg'
+                                                            onClick={() => handleRoleChange(user._id, 'Fraud')}>
+                                                            Mark as Fraud
+                                                        </button>
+                                                    )
+                                                    :
+                                                    (
+                                                        user.role === "Fraud" &&
+                                                        <span className='px-3 py-1 text-xs font-semibold rounded-full text-red-600 bg-red-100'>{user.role}</span>
+                                                    )
+                                            }
+                                        </div>
+                                    </td>
+
+                                    <td className='text-center'>
+                                        <button
+                                            onClick={() => handleDelete(user._id)}
+                                            className="btn btn-sm bg-red-500 text-black hover:text-red-400 border-none rounded-lg">Delete</button>
+                                    </td>
+
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </AdminRoute>
+
     );
 };
 

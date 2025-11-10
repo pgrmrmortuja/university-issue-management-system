@@ -6,6 +6,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import BackButton from '../../../Shared/BackButton';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import AdminRoute from '../../../Routes/AdminRoute';
 
 const DetailsForAdmin = () => {
     const { id } = useParams();
@@ -17,7 +18,7 @@ const DetailsForAdmin = () => {
     const { user } = useContext(AuthContext);
     const queryClient = useQueryClient();
 
-    // ইস্যু ডেটা ফেচ
+    //
     useEffect(() => {
         const fetchIssue = async () => {
             const res = await axiosSecure.get(`/issue-id/${id}`);
@@ -26,7 +27,7 @@ const DetailsForAdmin = () => {
         fetchIssue();
     }, [id, axiosSecure]);
 
-    // লাইক সংখ্যা ফেচ
+    // 
     useEffect(() => {
         const fetchLikes = async () => {
             const res = await axiosSecure.get(`/likes/${id}`);
@@ -39,7 +40,7 @@ const DetailsForAdmin = () => {
         fetchLikes();
     }, [id, user, axiosSecure]);
 
-    // ✅ লাইক হ্যান্ডলার (Updated Version)
+    // (Updated Version)
     const handleLike = async () => {
         if (!user) return alert('Please login first');
 
@@ -108,7 +109,7 @@ const DetailsForAdmin = () => {
         isSolved,
     } = issue;
 
-    // ✅ TanStack style function for status change
+    // TanStack style function for status change
     const { mutateAsync: updateStatus } = useMutation({
         mutationFn: async ({ id, verification_status }) => {
             const res = await axiosSecure.patch(`/verification/${id}`, { verification_status });
@@ -128,7 +129,7 @@ const DetailsForAdmin = () => {
         },
     });
 
-    // ✅ TanStack style function for solve
+    // TanStack style function for solve
     const { mutateAsync: markSolved } = useMutation({
         mutationFn: async (id) => {
             const res = await axiosSecure.patch(`/solve/${id}`, { isSolved: true });
@@ -148,7 +149,7 @@ const DetailsForAdmin = () => {
         },
     });
 
-    // ✅ এখন তোমার ফাংশনগুলো হবে useQuery-এর মতো clean
+    // 
     const handleStatusChange = async (id, verification_status) => {
         await updateStatus({ id, verification_status });
     };
@@ -160,56 +161,56 @@ const DetailsForAdmin = () => {
 
 
     return (
+        <AdminRoute>
+            <div>
+                <div className="m-6">
+                    <BackButton />
+                </div>
+                <div className="flex justify-center w-full min-h-screen bg-white mb-16">
 
-        <div>
-            <div className="m-6">
-                <BackButton />
-            </div>
-            <div className="flex justify-center w-full min-h-screen bg-white mb-16">
-
-                <title>Issue Details | University</title>
+                    <title>Issue Details | University</title>
 
 
-                <div className="w-full max-w-xl p-4 mt-10 bg-white rounded-2xl shadow-md">
-                    {/* পোস্ট হেডার */}
-                    <div className="flex items-center gap-3 mb-3">
-                        <img
-                            src={student_image}
-                            alt="User"
-                            className="w-12 h-12 rounded-full border"
-                        />
-                        <div>
-                            <h2 className="font-semibold text-gray-900">{student_name}</h2>
-                            <p className="text-sm text-gray-500">
-                                {issue_date} • {issue_time}
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* পোস্ট টাইটেল */}
-                    <h3 className="mb-2 text-lg font-semibold text-gray-800">{issue_title}</h3>
-
-                    {/* লোকেশন */}
-                    {issue_location && (
-                        <p className="text-sm text-gray-500 mb-2">📍 {issue_location}</p>
-                    )}
-
-                    {/* বিস্তারিত */}
-                    <p className="mb-3 text-gray-700">{issue_details}</p>
-
-                    {/* ইমেজ */}
-                    {issue_image && (
-                        <div className="overflow-hidden rounded-xl">
+                    <div className="w-full max-w-xl p-4 mt-10 bg-white rounded-2xl shadow-md">
+                        {/*  */}
+                        <div className="flex items-center gap-3 mb-3">
                             <img
-                                src={issue_image}
-                                alt="Issue"
-                                className="object-cover w-full max-h-[500px] rounded-xl"
+                                src={student_image}
+                                alt="User"
+                                className="w-12 h-12 rounded-full border"
                             />
+                            <div>
+                                <h2 className="font-semibold text-gray-900">{student_name}</h2>
+                                <p className="text-sm text-gray-500">
+                                    {issue_date} • {issue_time}
+                                </p>
+                            </div>
                         </div>
-                    )}
 
-                    {/* স্ট্যাটাস ব্যাজ */}
-                    {/* <div className="flex items-center gap-2 mt-3">
+                        {/* */}
+                        <h3 className="mb-2 text-lg font-semibold text-gray-800">{issue_title}</h3>
+
+                        {/* */}
+                        {issue_location && (
+                            <p className="text-sm text-gray-500 mb-2">📍 {issue_location}</p>
+                        )}
+
+                        {/*  */}
+                        <p className="mb-3 text-gray-700">{issue_details}</p>
+
+                        {/**/}
+                        {issue_image && (
+                            <div className="overflow-hidden rounded-xl">
+                                <img
+                                    src={issue_image}
+                                    alt="Issue"
+                                    className="object-cover w-full max-h-[500px] rounded-xl"
+                                />
+                            </div>
+                        )}
+
+                        {/* */}
+                        {/* <div className="flex items-center gap-2 mt-3">
                         {verification_status && (
                             <span
                                 className={`px-3 py-1 text-xs font-semibold rounded-full ${verification_status === 'verified'
@@ -232,83 +233,85 @@ const DetailsForAdmin = () => {
                     </div> */}
 
 
-                    <div className='mt-3'>
-                        {/* ✅ Solve / Solved Button */}
-                        {issue.isSolved ? (
-                            <span className='px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mr-2'>solved</span>
-                        ) : (
-                            issue.verification_status !== "rejected" && (
-                                <button
-                                    onClick={() => handleSolve(issue._id)}
-                                    className='btn btn-neutral btn-sm mr-2'>
-                                    Solve
-                                </button>
-                            )
-                        )}
+                        <div className='mt-3'>
+                            {/* ✅ Solve / Solved Button */}
+                            {issue.isSolved ? (
+                                <span className='px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mr-2'>solved</span>
+                            ) : (
+                                issue.verification_status !== "rejected" && (
+                                    <button
+                                        onClick={() => handleSolve(issue._id)}
+                                        className='btn btn-neutral btn-sm mr-2'>
+                                        Solve
+                                    </button>
+                                )
+                            )}
 
-                        {/* ✅ Verify / Reject Section */}
-                        {issue.verification_status === "pending" ? (
-                            <>
-                                <button
-                                    onClick={() => handleStatusChange(issue._id, 'verified')}
-                                    className='btn btn-success btn-sm mr-2'>
-                                    Verify
-                                </button>
-                                <button
-                                    onClick={() => handleStatusChange(issue._id, 'rejected')}
-                                    className='btn btn-sm btn-error'>
-                                    Reject
-                                </button>
-                            </>
-                        ) : (
-                            <span
-                                className={`px-3 py-1 text-xs font-semibold rounded-full ${issue.verification_status === 'verified'
-                                    ? 'bg-green-100 text-green-700'
-                                    : 'text-red-600 bg-red-100'
-                                    }`}>
-                                {issue.verification_status}
-                            </span>
-                        )}
-                    </div>
+                            {/* ✅ Verify / Reject Section */}
+                            {issue.verification_status === "pending" ? (
+                                <>
+                                    <button
+                                        onClick={() => handleStatusChange(issue._id, 'verified')}
+                                        className='btn btn-success btn-sm mr-2'>
+                                        Verify
+                                    </button>
+                                    <button
+                                        onClick={() => handleStatusChange(issue._id, 'rejected')}
+                                        className='btn btn-sm btn-error'>
+                                        Reject
+                                    </button>
+                                </>
+                            ) : (
+                                <span
+                                    className={`px-3 py-1 text-xs font-semibold rounded-full ${issue.verification_status === 'verified'
+                                        ? 'bg-green-100 text-green-700'
+                                        : 'text-red-600 bg-red-100'
+                                        }`}>
+                                    {issue.verification_status}
+                                </span>
+                            )}
+                        </div>
 
 
 
-                    {/* লাইক কাউন্ট */}
-                    <p className="mt-3 text-sm text-gray-500">
-                        👍 {likes} {likes === 1 ? 'Like' : 'Likes'}
-                    </p>
+                        {/* */}
+                        <p className="mt-3 text-sm text-gray-500">
+                            👍 {likes} {likes === 1 ? 'Agree' : 'Agrees'}
+                        </p>
 
-                    {/* রিঅ্যাকশন বাটন */}
-                    <div className="flex items-center justify-between mt-3 border-t border-gray-200">
-                        <button
-                            onClick={handleLike}
-                            className={`flex items-center justify-center w-1/3 py-2 mt-1 rounded-xl ${isLiked ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-100'
-                                }`}
-                        >
+                        {/* */}
+                        <div className="flex items-center justify-between mt-3 border-t border-gray-200">
+                            <button
+                                onClick={handleLike}
+                                className={`flex items-center justify-center w-1/3 py-2 mt-1 rounded-xl ${isLiked ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:bg-gray-100'
+                                    }`}
+                            >
 
-                            <FaThumbsUp className="mr-2 text-lg" />
-                            Like
-                        </button>
+                                <FaThumbsUp className="mr-2 text-lg" />
+                                Agree
+                            </button>
 
-                        {/* <button className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl">
+                            {/* <button className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl">
                         <FaCommentAlt className="mr-2 text-lg" /> Comment
                     </button> */}
 
-                        <button
-                            onClick={handleSave}
-                            className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl"
-                        >
-                            {isSaved ? (
-                                <FaBookmark className="mr-2 text-lg text-blue-600" />
-                            ) : (
-                                <FaRegBookmark className="mr-2 text-lg" />
-                            )}
-                            Save
-                        </button>
+                            <button
+                                onClick={handleSave}
+                                className="flex items-center justify-center w-1/3 py-2 mt-1 text-gray-600 hover:bg-gray-100 rounded-xl"
+                            >
+                                {isSaved ? (
+                                    <FaBookmark className="mr-2 text-lg text-blue-600" />
+                                ) : (
+                                    <FaRegBookmark className="mr-2 text-lg" />
+                                )}
+                                Save
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </AdminRoute>
+
     );
 };
 

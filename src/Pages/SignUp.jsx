@@ -6,6 +6,7 @@ import useAxiosPublic from '../hooks/useAxiosPublic';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from '../Providers/AuthProvider';
+import axios from "axios";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -24,20 +25,59 @@ const SignUp = () => {
     try {
       const imageFile = data.photoURL[0]; // get selected file
 
+      // Default avatar (if no image selected)
+      const defaultAvatar = "https://ui-avatars.com/api/?name=User&size=128&background=0D8ABC&color=fff&rounded=true";
+
+      //
       if (!imageFile) {
-        Swal.fire({
-          icon: "warning",
-          title: "No Image Selected",
-          text: "Please select a profile image.",
-        });
-        return;
+        data.photoURL = defaultAvatar;
+
+        // 
+        createUser(data.email, data.password)
+          .then(result => {
+            const uid = result.user?.uid;
+
+            updateUserProfile(data.name, data.photoURL)
+              .then(() => {
+                const userInfo = {
+                  name: data.name,
+                  photoURL: data.photoURL,
+                  universityID: data.universityID,
+                  department: data.department,
+                  email: data.email,
+                  role: "User",
+                  uid: uid,
+                };
+
+                axiosPublic.post("/users", userInfo)
+                  .then(res => {
+                    if (res.data.insertedId) {
+
+                      getJwt(data.email); // stores token in localStorage
+
+                      reset();
+                      Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Registration Successful.',
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      navigate("/");
+                    }
+                  })
+              })
+              .catch(error => console.log(error))
+          });
+        return; 
       }
 
+     
       // Upload image to ImgBB
       const formData = new FormData();
       formData.append("image", imageFile);
 
-      const res = await axiosPublic.post(image_hosting_api, formData, {
+      const res = await axios.post(image_hosting_api, formData, {
         headers: { "content-type": "multipart/form-data" },
       });
 
@@ -77,13 +117,13 @@ const SignUp = () => {
                         timer: 1500
                       });
                       navigate("/");
-
                     }
                   })
               })
               .catch(error => console.log(error))
           })
       }
+
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -93,7 +133,6 @@ const SignUp = () => {
       });
     }
   };
-
 
 
   return (
@@ -128,14 +167,14 @@ const SignUp = () => {
               Profile Photo
             </label>
             <input
-              {...register("photoURL", { required: true })}
+              {...register("photoURL")}
               type="file"
               accept="image/*"
               className="w-full text-black bg-white border-2 border-gray-300 rounded-lg file-input"
             />
-            {errors.photoURL && (
+            {/* {errors.photoURL && (
               <p className="mt-1 text-sm text-red-600">Profile photo is required</p>
-            )}
+            )} */}
           </div>
 
           {/* University ID */}

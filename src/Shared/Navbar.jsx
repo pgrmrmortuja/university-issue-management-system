@@ -28,7 +28,7 @@ const Navbar = () => {
 
     const getDashboardLink = () => {
         if (role === 'Admin') return '/dashboard/admin-profile';
-        if (role === 'User') return '/dashboard/user-profile';
+        if (role === 'User') return '/dashboard/student-profile';
         return '/login';
     };
 
