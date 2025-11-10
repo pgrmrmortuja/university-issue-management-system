@@ -20,7 +20,7 @@ const IssueStatsChart = () => {
     const [stats, setStats] = useState({});
 
     useEffect(() => {
-        fetch("http://localhost:5000/issue-stats")
+        fetch("https://university-issue-management-system.vercel.app/issue-stats")
             .then((res) => res.json())
             .then((data) => setStats(data))
             .catch((err) => console.error(err));

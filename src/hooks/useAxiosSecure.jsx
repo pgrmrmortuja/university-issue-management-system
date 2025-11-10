@@ -7,7 +7,7 @@ const useAxiosSecure = () => {
     const { logOut } = useAuth();
 
     const axiosSecure = axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: "https://university-issue-management-system.vercel.app",
     });
 
     // Request Interceptor (Token Set)

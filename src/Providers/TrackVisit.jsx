@@ -18,7 +18,7 @@ const TrackVisit = () => {
 
             try {
                 // Send visit tracking request to the server
-                await axios.post("http://localhost:5000/track-visit", {
+                await axios.post("https://university-issue-management-system.vercel.app/track-visit", {
                     email: email || null,  // Send email if logged in, else null
                 });
 

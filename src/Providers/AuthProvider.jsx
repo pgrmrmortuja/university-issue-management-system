@@ -76,7 +76,7 @@ const AuthProvider = ({ children }) => {
     // Helper to request JWT from the server and store it
     const getJwt = async (email) => {
         try {
-            const res = await axios.post("http://localhost:5000/login", { email });
+            const res = await axios.post("https://university-issue-management-system.vercel.app/login", { email });
             if (res?.data?.token) {
                 localStorage.setItem("jwt", res.data.token);
             }
