@@ -24,7 +24,7 @@ const IssueStats = () => {
 
     return (
         <PrivateRoute>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-[1200px] mx-auto mt-10 mb-10">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 max-w-[1200px] mx-auto mt-10 mb-10">
                 {statItems.map((item, index) => (
                     <div
                         key={index}

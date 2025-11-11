@@ -36,9 +36,9 @@ const IssueStatsChart = () => {
 
     return (
         <PrivateRoute>
-            <div className="max-w-[1200px] mx-auto mt-10 px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+            <div className="max-w-[1200px] mx-auto mt-10 px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
                 {/* Pie Chart */}
-                <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-6">
+                <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-0 md:pt-3">
                     <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center text-gray-700">
                         Issue Distribution (Pie Chart)
                     </h2>

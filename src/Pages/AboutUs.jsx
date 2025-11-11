@@ -26,8 +26,8 @@ const AboutUs = () => {
                 {/* Features / Values Section */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Feature 1 */}
-                    <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition duration-300">
-                        <h2 className="text-2xl font-semibold text-red-600 mb-3">Efficiency</h2>
+                    <div className="bg-white rounded-2xl shadow-lg p-5 md:p-8 hover:shadow-xl transition duration-300">
+                        <h2 className="text-xl font-semibold text-red-600 mb-3">Efficiency</h2>
                         <p className="text-gray-600">
                             Students can submit issues quickly, and admins can manage them efficiently,
                             reducing delays in problem-solving.
@@ -35,8 +35,8 @@ const AboutUs = () => {
                     </div>
 
                     {/* Feature 2 */}
-                    <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition duration-300">
-                        <h2 className="text-2xl font-semibold text-red-600 mb-3">Transparency</h2>
+                    <div className="bg-white rounded-2xl shadow-lg p-5 md:p-8 hover:shadow-xl transition duration-300">
+                        <h2 className="text-xl font-semibold text-red-600 mb-3">Transparency</h2>
                         <p className="text-gray-600">
                             The status of each submitted issue is visible to the student, ensuring transparency
                             in the resolution process.
@@ -44,8 +44,8 @@ const AboutUs = () => {
                     </div>
 
                     {/* Feature 3 */}
-                    <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition duration-300">
-                        <h2 className="text-2xl font-semibold text-red-600 mb-3">Reliability</h2>
+                    <div className="bg-white rounded-2xl shadow-lg p-5 md:p-8 hover:shadow-xl transition duration-300">
+                        <h2 className="text-xl font-semibold text-red-600 mb-3">Reliability</h2>
                         <p className="text-gray-600">
                             Our system guarantees that all reported issues are tracked properly, and no concern
                             goes unnoticed.
@@ -53,8 +53,8 @@ const AboutUs = () => {
                     </div>
 
                     {/* Feature 4 */}
-                    <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition duration-300">
-                        <h2 className="text-2xl font-semibold text-red-600 mb-3">User-Friendly</h2>
+                    <div className="bg-white rounded-2xl shadow-lg p-5 md:p-8 hover:shadow-xl transition duration-300">
+                        <h2 className="text-xl font-semibold text-red-600 mb-3">User-Friendly</h2>
                         <p className="text-gray-600">
                             Both students and admins enjoy a simple and intuitive interface for reporting
                             and managing issues effortlessly.
@@ -81,7 +81,7 @@ const AboutUs = () => {
                     </p>
                 </div>
 
-
+                <h1 className="text-3xl text-center md:text-4xl font-bold text-red-700 mb-6 mt-9">Review in Charts</h1>
                 <IssueStatsChart />
 
             </div>

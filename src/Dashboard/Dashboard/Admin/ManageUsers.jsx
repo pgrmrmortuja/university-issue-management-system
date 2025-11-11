@@ -129,7 +129,7 @@ const ManageUsers = () => {
                                                 (user.role === "User" || user.role === !"Fraud") ?
                                                     (
                                                         <button
-                                                            className='btn btn-sm bg-green-500 text-black hover:text-green-400 border-none rounded-lg'
+                                                            className='btn btn-sm bg-green-500 text-black hover:text-green-400 border-none rounded-lg whitespace-nowrap'
                                                             onClick={() => handleRoleChange(user._id, 'Admin')}>
                                                             Make Admin
                                                         </button>
@@ -147,7 +147,7 @@ const ManageUsers = () => {
                                                 (user.role === "Admin" || user.role === !"Fraud") ?
                                                     (
                                                         <button
-                                                            className='btn btn-sm bg-blue-500 text-black hover:text-blue-400 border-none rounded-lg'
+                                                            className='btn btn-sm bg-blue-500 text-black hover:text-blue-400 border-none rounded-lg whitespace-nowrap'
                                                             onClick={() => handleRoleChange(user._id, 'User')}>
                                                             Back as Student
                                                         </button>
@@ -166,7 +166,7 @@ const ManageUsers = () => {
                                                 (user.role === "User") ?
                                                     (
                                                         <button
-                                                            className='btn btn-sm  bg-yellow-500 text-black hover:text-yellow-400 border-none rounded-lg'
+                                                            className='btn btn-sm  bg-yellow-500 text-black hover:text-yellow border-none rounded-lg whitespace-nowrap'
                                                             onClick={() => handleRoleChange(user._id, 'Fraud')}>
                                                             Mark as Fraud
                                                         </button>

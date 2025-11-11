@@ -6,7 +6,7 @@ const UserDashboard = () => {
     const linkClass = ({ isActive }) =>
         isActive
             ? " p-2 text-pink-700 rounded-lg hover:bg-transparent font-bold text-lg"
-            : " p-2 rounded-lg hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-blue-500";
+            : " p-2 rounded-lg hover:bg-transparent hover:text-red-500 hover:bg-pink-300 font-bold text-lg text-blue-500";
 
     return (
         <div>
@@ -68,7 +68,7 @@ const UserDashboard = () => {
                                 Saved Issues
                             </NavLink>
                         </li>
-                        <li><NavLink to="/" className="p-2 rounded-lg text-orange-500 hover:bg-transparent hover:text-pink-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
+                        <li><NavLink to="/" className="p-2 rounded-lg text-orange-500  hover:text-red-500 hover:bg-pink-300 font-bold text-lg text-left">Back to Home</NavLink></li>
 
                     </ul>
                 </div>

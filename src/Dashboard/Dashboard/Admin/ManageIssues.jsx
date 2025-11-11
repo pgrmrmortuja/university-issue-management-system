@@ -79,12 +79,12 @@ const ManageIssues = () => {
 
                                         {/* Solve / Solved Button */}
                                         {issue.isSolved ? (
-                                            <span className='px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mr-2'>solved</span>
+                                            <span className='px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full mr-2 mb-2 lg:mb-0'>solved</span>
                                         ) : (
                                             issue.verification_status !== "rejected" && (
                                                 <button
                                                     onClick={() => handleSolve(issue._id)}
-                                                    className='btn btn-neutral btn-sm mr-2'>
+                                                    className='btn btn-neutral btn-sm mr-2 mb-2 lg:mb-0'>
                                                     Solve
                                                 </button>
                                             )
