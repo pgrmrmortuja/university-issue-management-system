@@ -18,7 +18,7 @@ const Slider = () => {
     const images = [f1, f2, f3, f4, f5];
 
     return (
-        <div className='py-8 sm:py-10 mt-6 sm:mt-10 mb-6 sm:mb-10'>
+        <div className='py-8 sm:py-10 mb-6 sm:mb-10 flex flex-col items-center justify-center mt-14 md:mt-0'>
             <h2 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[48px] font-semibold text-center mb-4 sm:mb-6 text-red-500">
                 Welcome to
             </h2>
